@@ -1,0 +1,64 @@
+@startuml class.png
+title dodgeWall
+
+class Ball {
+    ballSize
+    ballColor
+    ballMoveDistance
+    ballPoint
+    ballName
+
+    Ball(windowHeight, ballName)
+    getPoint()
+}
+
+class Lane {
+    lanePoint
+    laneColor
+    laneBorderColor
+    laneBorderWidth
+    laneName
+
+    Lane(windowHeight, laneName)
+    getPoint()
+}
+
+class Wall {
+    wallHeight
+    wallColor
+    wallStartPoint
+    wallName
+
+    Wall(windowHeight, wallName)
+}
+
+class Judge {
+    hitJudge(ballPoint, ballSize, wallPoint, wallSpeed)
+}
+
+class Display {
+
+}
+
+class Background {
+    backgroundColor
+    backgroundName
+
+    Backround(windowHeight, backgroundName)
+}
+
+class Score {
+    setMyHighScore(score)
+    getMyHighScore()
+}
+
+interface KeyListener {
+}
+
+class JPanel {
+}
+
+Ball ..|> KeyListener
+Display --|> JPanel
+
+@enduml
