@@ -5,18 +5,20 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 public class Lane extends JPanel {
-	private Point[] lanePoint;
+	private Point lanePoints[];
 	private Color laneColor;
 	private Color laneBorderColor;
 	private String laneName;
 	private int laneBorderWidth;
 
-	public Lane(int windowHeight, String ballName) {
+	// コンストラクタ
+	public Lane(int windowHeight, String laneName) {
 
 	}
 
+	// レーンの座標を取得
 	public Point[] getPoint() {
-		return lanePoint;
+		return lanePoints;
 	}
 
 	@Override

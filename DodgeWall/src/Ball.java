@@ -16,10 +16,12 @@ public class Ball extends JPanel implements KeyListener {
 	private String ballName;
 
 
+	// コンストラクタ
 	public Ball(int windowHeight, String ballName) {
 
 	}
 
+	// ボールの座標を取得
 	public Point getPoint() {
 		return ballPoint;
 	}
