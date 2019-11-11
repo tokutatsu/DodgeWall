@@ -1,64 +1,71 @@
-@startuml class.png
+@startuml class
 title dodgeWall
 
-class Ball {
-    ballSize
-    ballColor
-    ballMoveDistance
-    ballPoint
-    ballName
+package unit {
+    abstract Unit {
+        abstract draw()
+    }
 
-    Ball(windowHeight, ballName)
-    getPoint()
+    class Ball {
+        ballSize
+        ballColor
+        ballMoveDistance
+        ballPoint
+        ballName
+
+        Ball(windowHeight, ballName)
+        getPoint()
+    }
+
+    class Lane {
+        lanePoint
+        laneColor
+        laneBorderColor
+        laneBorderWidth
+        laneName
+
+        Lane(windowHeight, laneName)
+        getPoint()
+    }
+
+    class Wall {
+        wallHeight
+        wallColor
+        wallStartPoint
+        wallName
+
+        Wall(windowHeight, wallName)
+    }
+
+    class Background {
+        backgroundColor
+        backgroundName
+
+        Backround(windowHeight, backgroundName)
+    }
 }
 
-class Lane {
-    lanePoint
-    laneColor
-    laneBorderColor
-    laneBorderWidth
-    laneName
-
-    Lane(windowHeight, laneName)
-    getPoint()
+package config {
+    class WindowConfig {
+        height
+        width
+    }
 }
 
-class Wall {
-    wallHeight
-    wallColor
-    wallStartPoint
-    wallName
+package block {
+    class Judge {
+        hitJudge(ballPoint, ballSize, wallPoint, wallSpeed)
+    }
 
-    Wall(windowHeight, wallName)
+    class Score {
+        setMyHighScore(score)
+        getMyHighScore()
+    }
 }
 
-class Judge {
-    hitJudge(ballPoint, ballSize, wallPoint, wallSpeed)
-}
-
-class Display {
-
-}
-
-class Background {
-    backgroundColor
-    backgroundName
-
-    Backround(windowHeight, backgroundName)
-}
-
-class Score {
-    setMyHighScore(score)
-    getMyHighScore()
-}
-
-interface KeyListener {
-}
-
-class JPanel {
-}
-
-Ball ..|> KeyListener
-Display --|> JPanel
+Ball --|> Unit
+Wall --|> Unit
+Lane --|> Unit
+Background --|> Unit
 
 @enduml
