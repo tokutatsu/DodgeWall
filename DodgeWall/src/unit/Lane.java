@@ -1,28 +1,26 @@
 package unit;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.Polygon;
 
 public class Lane extends Unit {
-	private Point lanePoints[];
-	private Color laneColor;
-	private Color laneBorderColor;
-	private String laneName;
-	private int laneBorderWidth;
+	private Polygon lane;
+	private Color color;
+	private String name;
 
 	// コンストラクタ
-	public Lane(int windowHeight, String laneName) {
-
+	public Lane(String name) {
+		this.name = name;
 	}
 
-	// レーンの座標を取得
-	public Point[] getPoint() {
-		return lanePoints;
+	// レーンの座標(ポリゴン)を取得
+	public Polygon getPolygon() {
+		return lane;
 	}
 
 	@Override
 	void draw(Graphics g) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		g.setColor(color);
+		g.fillPolygon(lane);
 	}
 }
