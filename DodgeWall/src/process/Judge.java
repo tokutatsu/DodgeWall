@@ -1,15 +1,21 @@
 package process;
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Polygon;
+
+import config.BallConfig;
+import config.WallConfig;
 
 public class Judge {
-    public static boolean hitJudge (Point ballPoint, int ballSize, Polygon wallPoint, int wallSpeed) { // ballSizeとwallSpeedは今後configから持ってくる
-        if ( ballPoint.x != wallPoint.xpoints[3] ) { // wallPointの4番目に壁の左下隅の値が入っているものとして考えている
+    public static boolean hitJudge (Point ballPoint, Polygon wallPoint) {
+    	int ballSize = BallConfig.size;
+    	int wallSpeed = WallConfig.yBottomIncrease;
+        if ( ballPoint.x != wallPoint.xpoints[WallConfig.buttomLeft] ) { // wallPointの3番目に壁の左下隅の値が入っていました
             return false;
         }
-        if ( ballSize > wallSpeed && ( ballPoint.y > wallPoint.ypoints[3] || ballPoint.y + 2 * ballSize < wallPoint.ypoints[3] ) ) {
+        if ( ballSize > wallSpeed && ( ballPoint.y > wallPoint.ypoints[WallConfig.buttomLeft] || ballPoint.y + 2 * ballSize < wallPoint.ypoints[WallConfig.buttomLeft] ) ) {
             return false;
         }
-        if ( ballSize < wallSpeed && ( ballPoint.y > wallPoint.ypoints[3] || ballPoint.y + 2 * ballSize < wallPoint.ypoints[3] - wallSpeed ) ) {
+        if ( ballSize < wallSpeed && ( ballPoint.y > wallPoint.ypoints[WallConfig.buttomLeft] || ballPoint.y + 2 * ballSize < wallPoint.ypoints[WallConfig.buttomLeft] - wallSpeed ) ) {
             return false;
         }
         return true;
