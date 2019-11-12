@@ -22,8 +22,8 @@ public class Play extends JPanel implements Runnable {
 	private static Lane lane4 = new Lane("lane4");
 	private static Wall wall1 = new Wall("wall1");
 	private static Wall wall2 = new Wall("wall2");
-	private static Ball ball1 = new Ball("ball1");
 	private static Ball ball2 = new Ball("ball2");
+	private static Ball ball3 = new Ball("ball3");
 
 
 	public Play() {
@@ -59,10 +59,11 @@ public class Play extends JPanel implements Runnable {
 		lane4.draw(g);
 		wall1.draw(g);
 		wall2.draw(g);
-		ball1.draw(g);
 		ball2.draw(g);
+		ball3.draw(g);
 	}
 
+	@Override
 	public void run() {
 		Thread thisThread = Thread.currentThread();
 		while (thread == thisThread) {

@@ -81,7 +81,7 @@ public class Wall extends Unit {
 	}
 
 	@Override
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillPolygon(wall);
 		g.setColor(new Color(0, 0, 0));

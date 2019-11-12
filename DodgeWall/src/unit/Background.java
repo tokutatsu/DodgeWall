@@ -27,7 +27,7 @@ public class Background extends Unit {
 		}
 	}
 
-	private void move() {
+	public void move() {
 		switch (name) {
 		case "background1":
 			// x座標の遷移

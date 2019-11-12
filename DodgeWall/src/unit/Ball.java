@@ -13,7 +13,7 @@ public class Ball extends Unit implements KeyListener {
 	private String name;
 
 	// コンストラクタ
-	public Ball(int windowHeight, String name) {
+	public Ball(String name) {
 		this.name = name;
 		switch (name) {
 		case "ball2": point = BallConfig.ball2; break;  // 左のボール
@@ -67,7 +67,7 @@ public class Ball extends Unit implements KeyListener {
 
 	// 描画メソッド
 	@Override
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillOval(point.x, point.y, BallConfig.size, BallConfig.size);
 	}

@@ -42,7 +42,7 @@ public class Lane extends Unit {
 	}
 
 	@Override
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillPolygon(lane);
 	}
