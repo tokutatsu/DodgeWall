@@ -3,9 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import javax.swing.JPanel;
-
-public class Lane extends JPanel {
+public class Lane extends Unit {
 	private Point lanePoints[];
 	private Color laneColor;
 	private Color laneBorderColor;
@@ -23,7 +21,8 @@ public class Lane extends JPanel {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	void draw(Graphics g) {
+		// TODO 自動生成されたメソッド・スタブ
 
 	}
 }

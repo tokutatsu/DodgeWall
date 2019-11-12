@@ -5,9 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JPanel;
-
-public class Ball extends JPanel implements KeyListener {
+public class Ball extends Unit implements KeyListener {
 	private int size;
 	private Color color = new Color(0, 255, 0);  // 色は仮決め
 	private int moveDistance;
@@ -76,10 +74,9 @@ public class Ball extends JPanel implements KeyListener {
 		}
 	}
 
-	// 描画メソッド(これはpaintComponentでは無理かも)
+	// 描画メソッド
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	void draw(Graphics g) {
 		g.setColor(color);
 		g.fillOval(point.x, point.y, size, size);
 	}

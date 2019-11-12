@@ -3,9 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import javax.swing.JPanel;
-
-public class Background extends JPanel {
+public class Background extends Unit {
 
 	private Color color = new Color(0, 0, 100, 0);
 	private Point points[] = new Point[3];
@@ -16,7 +14,8 @@ public class Background extends JPanel {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void draw(Graphics g) {
+
 	}
 
 }
