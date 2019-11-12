@@ -1,5 +1,31 @@
 package config;
 
+import java.awt.Point;
+
 public class BallConfig {
+
+	// ボールのサイズ
+	public static final int size = WindowConfig.Width/5;
+
+
+
+	// ----------------------------しばらくprivate-------------------------------
+
+	// ボールの座標
+	private static final int xBall = -size/4;
+	private static final int yBall = WindowConfig.Height*4/5;
+
+
+	// --------------------ここからpublic-----------------------------------
+
+	// ボールの移動距離
+	public static final int xDistance = WindowConfig.Width/4+size/4;
+
+	// ボールの座標
+	// ball1 -> 一番左のレーンにいるとき ball2 -> 左から2番目のレーンにいるとき...
+	public static final Point ball1 = new Point(xBall, yBall);
+	public static final Point ball2 = new Point(xBall + xDistance, yBall);
+	public static final Point ball3 = new Point(xBall + xDistance*2, yBall);
+	public static final Point ball4 = new Point(xBall + xDistance*3, yBall);
 
 }
