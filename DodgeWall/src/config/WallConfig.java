@@ -48,6 +48,13 @@ public class WallConfig {
 
 	// ------------------------------しばらくprivate--------------------------
 
+
+	// 4角形の配置
+	public static final int upperRight = 0;
+	public static final int buttomRight = 1;
+	public static final int buttomLeft = 2;
+	public static final int upperLeft = 3;
+
 	// 壁のx方向の動き 左から1番目のレーン
 	// xRightIncrease -> 右上，右下
 	// xLeftIncrease -> 左上，左下

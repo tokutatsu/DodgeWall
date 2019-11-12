@@ -73,7 +73,7 @@ public class LaneConfig {
 	// レーンの下に表示する背景の座標を示すポリゴン
 	public static final Polygon back = new Polygon(xBack, yBack, 4);
 	// レーンの色
-	public static final Color color = new Color(255, 255, 150);
+	public static final Color laneColor = new Color(255, 255, 150);
 	// レーンの下の背景の色
 	public static final Color backColor = new Color(255, 255, 255);
 
