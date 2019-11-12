@@ -10,9 +10,12 @@ public class Wall extends Unit {
 	private Color color = WallConfig.color;
 	private Polygon wall;
 	private String name;
+	private int moveCount;
 
 	public Wall(String name) {
 		this.name = name;
+		this.moveCount = 0;
+
 		switch (name) {
 		case "wall1":
 			wall = WallConfig.wall1;
@@ -65,6 +68,16 @@ public class Wall extends Unit {
 		wall.ypoints[WallConfig.buttomRight] += WallConfig.yBottomIncrease;
 		wall.ypoints[WallConfig.buttomLeft] += WallConfig.yBottomIncrease;
 		wall.ypoints[WallConfig.upperLeft] += WallConfig.yUpperIncrease;
+
+		moveCount++;
+	}
+
+	public boolean isVisible() {
+		if (moveCount <= WallConfig.frame) {
+			return true;
+		}
+		return false;
+
 	}
 
 	@Override

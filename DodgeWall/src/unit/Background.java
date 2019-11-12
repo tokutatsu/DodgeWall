@@ -4,15 +4,18 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 
 import config.BackgroundConfig;
+import config.WallConfig;
 
 public class Background extends Unit {
 
 	private Color color = BackgroundConfig.color;
 	private Polygon background;
 	private String name;
+	private int moveCount;
 
 	public Background(String name) {
 		this.name = name;
+		this.moveCount = 0;
 
 		switch (name) {
 		case "background1":
@@ -47,6 +50,15 @@ public class Background extends Unit {
 			background.ypoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseBackground2.y;
 			break;
 		}
+		moveCount++;
+	}
+
+	public boolean isVisible() {
+		if (moveCount <= WallConfig.frame) {
+			return true;
+		}
+		return false;
+
 	}
 
 	@Override
