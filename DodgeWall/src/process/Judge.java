@@ -1,3 +1,4 @@
+package process;
 import java.awt.*;
 
 public class Judge {
