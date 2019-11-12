@@ -7,52 +7,81 @@ package unit {
     }
 
     class Ball {
-        ballSize
-        ballColor
-        ballMoveDistance
-        ballPoint
-        ballName
+        size
+        color
+        moveDistance
+        point
+        name
 
-        Ball(windowHeight, ballName)
+        Ball(ballName)
         getPoint()
     }
 
     class Lane {
-        lanePoint
-        laneColor
-        laneBorderColor
-        laneBorderWidth
-        laneName
+        point
+        color
+        borderColor
+        borderWidth
+        name
 
-        Lane(windowHeight, laneName)
+        Lane(laneName)
         getPoint()
     }
 
     class Wall {
-        wallHeight
-        wallColor
-        wallStartPoint
-        wallName
+        height
+        color
+        startPoint
+        name
 
-        Wall(windowHeight, wallName)
+        Wall(wallName)
     }
 
     class Background {
-        backgroundColor
-        backgroundName
+        color
+        name
 
-        Backround(windowHeight, backgroundName)
+        Backround(backgroundName)
     }
 }
 
 package config {
+    class BackgroundConfig {
+    }
+    
+    class BallConfig {
+
+    }
+
+    class LaneConfig {
+
+    }
+
+    class WallConfig {
+
+    }
+
     class WindowConfig {
         height
         width
     }
 }
 
-package block {
+package scene {
+    class Play {
+
+    }
+
+    class Result {
+
+    }
+    
+    class Title {
+        
+    }
+}
+
+package process {
     class Judge {
         hitJudge(ballPoint, ballSize, wallPoint, wallSpeed)
     }
