@@ -76,12 +76,12 @@ public class Play extends JPanel implements Runnable {
 			} else {
 				background2 = new Background("background2");
 			}
-			if ( wall1.move() ) {
+			if ( wall1.isVisible() ) {
 				wall1.move();
 			} else {
 				wall1 = new Wall("wall1");
 			}
-			if ( wall2.move() ) {
+			if ( wall2.isVisible() ) {
 				wall2.move();
 			} else {
 				wall2 = new Wall("wall2");
