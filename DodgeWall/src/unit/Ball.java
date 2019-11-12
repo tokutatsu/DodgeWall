@@ -16,11 +16,11 @@ public class Ball extends Unit implements KeyListener {
 
 
 	// コンストラクタ
-	public Ball(int windowHeight, String ballName) {
-		windowWidth = windowHeight / 2;
-		size = windowWidth / 5;
-		moveDistance = (windowWidth + size) / 4;  // hiranyのボールの座標から引き算で逆算(後で調整)
-		name = ballName;
+	public Ball(int windowHeight, String name) {
+		this.windowWidth = windowHeight / 2;
+		this.size = windowWidth / 5;
+		this.moveDistance = (windowWidth + size) / 4;  // hiranyのボールの座標から引き算で逆算(後で調整)
+		this.name = name;
 		int y = windowHeight * 4 / 5;
 
 
