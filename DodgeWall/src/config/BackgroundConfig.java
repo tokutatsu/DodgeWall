@@ -51,7 +51,7 @@ public class BackgroundConfig {
 	public static final Point leftIncreaseBackground2 = new Point(8, 10);
 
 	// 1つの背景のフレーム数
-	public static int frame = WindowConfig.Width/(2*leftIncreaseBackground2.x);
+	public static final int frame = WindowConfig.Width/(2*leftIncreaseBackground2.x);
 
 	// 背景の色
 	// 背景色の透明度の初期値
@@ -60,5 +60,8 @@ public class BackgroundConfig {
 	public static final int alphIncrease = 255/frame;
 	// 背景の色(透明度以外)
 	public static final Color color = new Color(0, 0, 100);
+
+	// 個数
+	public static final int pieces = 3;
 
 }

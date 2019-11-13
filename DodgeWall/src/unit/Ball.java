@@ -9,15 +9,23 @@ import config.BallConfig;
 
 public class Ball extends Unit implements KeyListener {
 	private Color color = new Color(0, 255, 0);  // 色は仮決め
-	private Point point;
+	private Point point = new Point();
 	private String name;
 
 	// コンストラクタ
 	public Ball(String name) {
 		this.name = name;
 		switch (name) {
-		case "ball2": point = BallConfig.ball2; break;  // 左のボール
-		case "ball3": point = BallConfig.ball3; break;  // 右のボール
+		case "ball2":
+//			point = BallConfig.ball2; break;  // 左のボール
+			point.x = BallConfig.ball2.x;
+			point.y = BallConfig.ball2.y;
+			break;
+		case "ball3":
+//			point = BallConfig.ball3; break;  // 右のボール
+			point.x = BallConfig.ball3.x;
+			point.y = BallConfig.ball3.y;
+			break;
 		}
 	}
 

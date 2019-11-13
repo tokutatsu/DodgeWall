@@ -19,16 +19,16 @@ public class WallConfig {
 			LaneConfig.lane1.xpoints[3]+LaneConfig.border,
 	};
 	private static final int xWall2[] = {
-			LaneConfig.lane2.xpoints[0]-LaneConfig.border,
-			LaneConfig.lane2.xpoints[3]+LaneConfig.border,
-			LaneConfig.lane2.xpoints[0]-LaneConfig.border,
-			LaneConfig.lane2.xpoints[3]+LaneConfig.border,
+			LaneConfig.lane2.xpoints[0]-LaneConfig.border*2,
+			LaneConfig.lane2.xpoints[0]-LaneConfig.border*2,
+			LaneConfig.lane2.xpoints[3]+LaneConfig.border*2,
+			LaneConfig.lane2.xpoints[3]+LaneConfig.border*2,
 	};
 	private static final int xWall3[] = {
-			LaneConfig.lane3.xpoints[0]-LaneConfig.border,
-			LaneConfig.lane3.xpoints[3]+LaneConfig.border,
-			LaneConfig.lane3.xpoints[0]-LaneConfig.border,
-			LaneConfig.lane3.xpoints[3]+LaneConfig.border,
+			LaneConfig.lane3.xpoints[0]-LaneConfig.border*2,
+			LaneConfig.lane3.xpoints[0]-LaneConfig.border*2,
+			LaneConfig.lane3.xpoints[3]+LaneConfig.border*2,
+			LaneConfig.lane3.xpoints[3]+LaneConfig.border*2,
 	};
 	private static final int xWall4[] = {
 			LaneConfig.lane4.xpoints[0]-LaneConfig.border,
@@ -92,5 +92,8 @@ public class WallConfig {
 	public static final int alphIncrease = 255/frame;
 	// 壁の色(透明度以外)
 	public static final Color color = new Color(255, 0, 255);
+
+	// 個数
+	public static final int pieces = 5;
 
 }

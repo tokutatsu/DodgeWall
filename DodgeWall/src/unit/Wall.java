@@ -8,7 +8,7 @@ import config.WallConfig;
 public class Wall extends Unit {
 
 	private Color color = WallConfig.color;
-	private Polygon wall;
+	private Polygon wall = new Polygon();
 	private String name;
 	private int moveCount;
 
@@ -18,16 +18,28 @@ public class Wall extends Unit {
 
 		switch (name) {
 		case "wall1":
-			wall = WallConfig.wall1;
+			// 壁1の初期値
+			for ( int i = 0; i < 4; i++ ) {
+				wall.addPoint(WallConfig.wall1.xpoints[i], WallConfig.wall1.ypoints[i]);
+			}
 			break;
 		case "wall2":
-			wall = WallConfig.wall2;
+			// 壁2の初期値
+			for ( int i = 0; i < 4; i++ ) {
+				wall.addPoint(WallConfig.wall2.xpoints[i], WallConfig.wall2.ypoints[i]);
+			}
 			break;
 		case "wall3":
-			wall = WallConfig.wall3;
+			// 壁3の初期値
+			for ( int i = 0; i < 4; i++ ) {
+				wall.addPoint(WallConfig.wall3.xpoints[i], WallConfig.wall3.ypoints[i]);
+			}
 			break;
 		case "wall4":
-			wall = WallConfig.wall4;
+			// 壁4の初期値
+			for ( int i = 0; i < 4; i++ ) {
+				wall.addPoint(WallConfig.wall4.xpoints[i], WallConfig.wall4.ypoints[i]);
+			}
 			break;
 		}
 	}
@@ -77,7 +89,13 @@ public class Wall extends Unit {
 			return true;
 		}
 		return false;
+	}
 
+	public boolean nextTrigger() {
+		if (moveCount <= WallConfig.frame/WallConfig.pieces) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

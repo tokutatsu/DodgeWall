@@ -4,12 +4,11 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 
 import config.BackgroundConfig;
-import config.WallConfig;
 
 public class Background extends Unit {
 
 	private Color color = BackgroundConfig.color;
-	private Polygon background;
+	private Polygon background = new Polygon();
 	private String name;
 	private int moveCount;
 
@@ -19,10 +18,17 @@ public class Background extends Unit {
 
 		switch (name) {
 		case "background1":
-			background = BackgroundConfig.background1;
+			// 代入だと参照のためpointsごとに追加していく
+			// backgroundの初期値
+			for ( int i = 0; i < 3; i++ ) {
+				background.addPoint(BackgroundConfig.background1.xpoints[i], BackgroundConfig.background1.ypoints[i]);
+			}
 			break;
 		case "background2":
-			background = BackgroundConfig.background2;
+			// backgroundの初期値
+			for ( int i = 0; i < 3; i++ ) {
+				background.addPoint(BackgroundConfig.background2.xpoints[i], BackgroundConfig.background2.ypoints[i]);
+			}
 			break;
 		}
 	}
@@ -54,11 +60,17 @@ public class Background extends Unit {
 	}
 
 	public boolean isVisible() {
-		if (moveCount <= WallConfig.frame) {
+		if (moveCount <= BackgroundConfig.frame) {
 			return true;
 		}
 		return false;
+	}
 
+	public boolean nextTrigger() {
+		if (moveCount == BackgroundConfig.frame/BackgroundConfig.pieces) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
