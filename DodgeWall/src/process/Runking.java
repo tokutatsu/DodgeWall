@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Score {
+public class Runking {
 	public static int[] getTopTenScore() throws Exception { // 全ての記録の中でトップ10を返す
 		try (
 				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
@@ -14,7 +14,7 @@ public class Score {
 						"postgres");
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
-						"select score from scores order by score desc offset 0 limit 10"
+						"select score from runking order by score desc offset 0 limit 10"
 						);
 				){
 			int[] score = new int[resultSet.getRow()];
@@ -35,7 +35,7 @@ public class Score {
 						"postgres");
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
-						"select max(score) from scores"
+						"select max(score) from runking"
 						);
 				){
 			int score = resultSet.getInt(0);
@@ -52,7 +52,7 @@ public class Score {
 						"postgres");
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
-						"insert into scores (name, score) values ('Guest User', " + score + ")"
+						"insert into runking (name, score) values ('Guest User', " + score + ")"
 						);
 				){
 			return true;
