@@ -15,6 +15,7 @@ public class Ranking {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
 						"select score from ranking order by score desc, id desc offset 0 limit 10"
+						// "select name, score from ranking order by score desc, id desc offset 0 limit 10" // 名前とセット
 						);
 				){
 			int[] score = new int[resultSet.getRow()];
