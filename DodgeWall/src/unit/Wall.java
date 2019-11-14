@@ -92,7 +92,7 @@ public class Wall extends Unit {
 	}
 
 	public boolean nextTrigger() {
-		if (moveCount <= WallConfig.frame/WallConfig.pieces) {
+		if (moveCount == WallConfig.frame/WallConfig.pieces) {
 			return true;
 		}
 		return false;
