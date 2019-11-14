@@ -98,6 +98,10 @@ public class Wall extends Unit {
 		return false;
 	}
 
+	public int getButtomLeft() {
+		return wall.ypoints[WallConfig.buttomLeft];
+	}
+
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(color);

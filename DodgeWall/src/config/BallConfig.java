@@ -7,16 +7,9 @@ public class BallConfig {
 	// ボールのサイズ
 	public static final int size = WindowConfig.Width/5;
 
-
-
-	// ----------------------------しばらくprivate-------------------------------
-
 	// ボールの座標
-	private static final int xBall = -size/4;
-	private static final int yBall = WindowConfig.Height*4/5;
-
-
-	// --------------------ここからpublic-----------------------------------
+	public static final int xBall = -size/4;
+	public static final int yBall = WindowConfig.Height*4/5;
 
 	// ボールの移動距離
 	public static final int moveDistance = WindowConfig.Width/4+size/4;
