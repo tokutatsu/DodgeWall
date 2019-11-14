@@ -26,8 +26,8 @@ public class Play extends JPanel implements Runnable {
 	private static int speed;
 	// 背景
 	// 追加したり削除したり賀しやすいためArrayListを採用
-	private static ArrayList<Background> background1 = new ArrayList<Background>();
-	private static ArrayList<Background> background2 = new ArrayList<Background>();
+	private static ArrayList<Background> backgroundLeft = new ArrayList<Background>();
+	private static ArrayList<Background> backgroundRight = new ArrayList<Background>();
 	// レーン
 	private static Lane back = new Lane("back");
 	private static Lane lane1 = new Lane("lane1");
@@ -74,13 +74,14 @@ public class Play extends JPanel implements Runnable {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		background1.forEach(b -> {b.draw(g);});
-		background2.forEach(b -> {b.draw(g);});
+		backgroundLeft.forEach(b -> {b.draw(g);});
+		backgroundRight.forEach(b -> {b.draw(g);});
 		back.draw(g);
 		lane1.draw(g);
 		lane2.draw(g);
 		lane3.draw(g);
 		lane4.draw(g);
+		// 描画の重なりの関係上逆順
 		for ( i = wallLeft.size()-1; i >= 0 && wallLeft.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
 				wallLeft.get(i).draw(g);
 		}
@@ -114,8 +115,8 @@ public class Play extends JPanel implements Runnable {
 
 	// ArrayListを初期化
 	private void init() {
-		background1.add(new Background("background1"));
-		background2.add(new Background("background2"));
+		backgroundLeft.add(new Background("background1"));
+		backgroundRight.add(new Background("background2"));
 		if ( random.nextBoolean() ) {
 			wallLeft.add(new Wall("wall2"));
 		} else {
@@ -130,29 +131,29 @@ public class Play extends JPanel implements Runnable {
 
 	// 各オブジェクトをmoveメソッドで動かす
 	private void move() {
-		for ( i = 0; i < background1.size(); i++ ) {
+		for ( i = 0; i < backgroundLeft.size(); i++ ) {
 			// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
-			if ( background1.get(i).nextTrigger() && background1.size() < BackgroundConfig.pieces ) {
-				background1.add(new Background("background1"));
-				background1.get(i).move();
+			if ( backgroundLeft.get(i).nextTrigger() && backgroundLeft.size() < BackgroundConfig.pieces ) {
+				backgroundLeft.add(new Background("background1"));
+				backgroundLeft.get(i).move();
 			// 背景が画面内にあれば背景をその動かす
-			} else if ( background1.get(i).isVisible() ) {
-				background1.get(i).move();
+			} else if ( backgroundLeft.get(i).isVisible() ) {
+				backgroundLeft.get(i).move();
 			// 背景が画面内になければその背景をArrayListから削除して新しい背景をArrayListに追加する．
 			} else {
-				background1.remove(i);
-				background1.add(new Background("background1"));
+				backgroundLeft.remove(i);
+				backgroundLeft.add(new Background("background1"));
 			}
 		}
-		for ( i = 0; i < background2.size(); i++ ) {
-			if ( background2.get(i).nextTrigger() && background2.size() < BackgroundConfig.pieces ) {
-				background2.add(new Background("background2"));
-				background2.get(i).move();
-			} else if ( background2.get(i).isVisible() ) {
-				background2.get(i).move();
+		for ( i = 0; i < backgroundRight.size(); i++ ) {
+			if ( backgroundRight.get(i).nextTrigger() && backgroundRight.size() < BackgroundConfig.pieces ) {
+				backgroundRight.add(new Background("background2"));
+				backgroundRight.get(i).move();
+			} else if ( backgroundRight.get(i).isVisible() ) {
+				backgroundRight.get(i).move();
 			} else {
-				background2.remove(i);
-				background2.add(new Background("background2"));
+				backgroundRight.remove(i);
+				backgroundRight.add(new Background("background2"));
 			}
 		}
 		for ( i = 0; i < wallLeft.size(); i++ ) {
