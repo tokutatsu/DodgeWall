@@ -35,13 +35,13 @@ public class Play extends JPanel implements Runnable {
 	private static Lane lane3 = new Lane("lane3");
 	private static Lane lane4 = new Lane("lane4");
 	// 壁
-	// wall2は左から2番目，wall3は左から3番目に現れる壁
-	private static ArrayList<Wall> wall2 = new ArrayList<Wall>();
-	private static ArrayList<Wall> wall3 = new ArrayList<Wall>();
+	// wallLeftは左から2番目，wallRigthは左から3番目に現れる壁
+	private static ArrayList<Wall> wallLeft = new ArrayList<Wall>();
+	private static ArrayList<Wall> wallRigth = new ArrayList<Wall>();
 	// ボール
-	// ball2 -> 左，ball3 -> 右
-	private static Ball ball2 = new Ball("ball2");
-	private static Ball ball3 = new Ball("ball3");
+	// ballLeft -> 左，ballRight -> 右
+	private static Ball ballLeft = new Ball("ball2");
+	private static Ball ballRight = new Ball("ball3");
 	// 一時変数
 	private static int i;
 
@@ -81,19 +81,19 @@ public class Play extends JPanel implements Runnable {
 		lane2.draw(g);
 		lane3.draw(g);
 		lane4.draw(g);
-		for ( i = wall2.size()-1; i >= 0 && wall2.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
-				wall2.get(i).draw(g);
+		for ( i = wallLeft.size()-1; i >= 0 && wallLeft.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
+				wallLeft.get(i).draw(g);
 		}
-		ball2.draw(g);
+		ballLeft.draw(g);
 		for ( ; i >= 0; i-- ) {
-				wall2.get(i).draw(g);
+				wallLeft.get(i).draw(g);
 		}
-		for ( i = wall3.size()-1; i >= 0 && wall3.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
-				wall3.get(i).draw(g);
+		for ( i = wallRigth.size()-1; i >= 0 && wallRigth.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
+				wallRigth.get(i).draw(g);
 		}
-		ball3.draw(g);
+		ballRight.draw(g);
 		for ( ; i >= 0; i-- ) {
-				wall3.get(i).draw(g);
+				wallRigth.get(i).draw(g);
 		}
 	}
 
@@ -117,14 +117,14 @@ public class Play extends JPanel implements Runnable {
 		background1.add(new Background("background1"));
 		background2.add(new Background("background2"));
 		if ( random.nextBoolean() ) {
-			wall2.add(new Wall("wall2"));
+			wallLeft.add(new Wall("wall2"));
 		} else {
-			wall2.add(new Wall("wall1"));
+			wallLeft.add(new Wall("wall1"));
 		}
 		if ( random.nextBoolean() ) {
-			wall3.add(new Wall("wall3"));
+			wallRigth.add(new Wall("wallh3"));
 		} else {
-			wall3.add(new Wall("wall4"));
+			wallRigth.add(new Wall("wall4"));
 		}
 	}
 
@@ -155,41 +155,41 @@ public class Play extends JPanel implements Runnable {
 				background2.add(new Background("background2"));
 			}
 		}
-		for ( i = 0; i < wall2.size(); i++ ) {
-			if ( wall2.get(i).nextTrigger() && wall2.size() < WallConfig.pieces ) {
+		for ( i = 0; i < wallLeft.size(); i++ ) {
+			if ( wallLeft.get(i).nextTrigger() && wallLeft.size() < WallConfig.pieces ) {
 				if ( random.nextBoolean() ) {
-					wall2.add(new Wall("wall2"));
+					wallLeft.add(new Wall("wall2"));
 				} else {
-					wall2.add(new Wall("wall1"));
+					wallLeft.add(new Wall("wall1"));
 				}
-				wall2.get(i).move();
-			} else if ( wall2.get(i).isVisible() ) {
-				wall2.get(i).move();
+				wallLeft.get(i).move();
+			} else if ( wallLeft.get(i).isVisible() ) {
+				wallLeft.get(i).move();
 			} else {
-				wall2.remove(i);
+				wallLeft.remove(i);
 				if ( random.nextBoolean() ) {
-					wall2.add(new Wall("wall2"));
+					wallLeft.add(new Wall("wall2"));
 				} else {
-					wall2.add(new Wall("wall1"));
+					wallLeft.add(new Wall("wall1"));
 				}
 			}
 		}
-		for ( i = 0; i < wall3.size(); i++ ) {
-			if ( wall3.get(i).nextTrigger() && wall3.size() < WallConfig.pieces ) {
+		for ( i = 0; i < wallRigth.size(); i++ ) {
+			if ( wallRigth.get(i).nextTrigger() && wallRigth.size() < WallConfig.pieces ) {
 				if ( random.nextBoolean() ) {
-					wall3.add(new Wall("wall3"));
+					wallRigth.add(new Wall("wall3"));
 				} else {
-					wall3.add(new Wall("wall4"));
+					wallRigth.add(new Wall("wall4"));
 				}
-				wall3.get(i).move();
-			} else if ( wall3.get(i).isVisible() ) {
-				wall3.get(i).move();
+				wallRigth.get(i).move();
+			} else if ( wallRigth.get(i).isVisible() ) {
+				wallRigth.get(i).move();
 			} else {
-				wall3.remove(i);
+				wallRigth.remove(i);
 				if ( random.nextBoolean() ) {
-					wall3.add(new Wall("wall3"));
+					wallRigth.add(new Wall("wall3"));
 				} else {
-					wall3.add(new Wall("wall4"));
+					wallRigth.add(new Wall("wall4"));
 				}
 			}
 		}
