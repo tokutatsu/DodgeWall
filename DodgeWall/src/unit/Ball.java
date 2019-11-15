@@ -36,12 +36,12 @@ public class Ball extends Unit implements KeyListener {
 
 
 	@Override
-	public void keyTyped(KeyEvent e){
+	public void keyTyped(KeyEvent e) {
 	}
 
 	// 左右のキーを押したときのボールの移動
 	@Override
-	public void keyPressed(KeyEvent e){
+	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
 			if (name == "ball3") {
