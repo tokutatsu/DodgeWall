@@ -112,7 +112,7 @@ public class Play extends JPanel implements Runnable {
 		while (thread == thisThread) {
 			// オブジェクトたちを動かす
 			move();
-			if ( hit() ) {
+			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
 				stopThread();
 			}
 			repaint();
@@ -203,20 +203,6 @@ public class Play extends JPanel implements Runnable {
 				}
 			}
 		}
-	}
-
-	private boolean hit() {
-		for ( int i = 0; i < leftWallList.size(); i++ ) {
-			if ( Judge.hitJudge(leftBall, leftWallList.get(i)) ) {
-				return true;
-			}
-		}
-		for ( int i = 0; i < rightWallList.size(); i++ ) {
-			if ( Judge.hitJudge(rightBall, rightWallList.get(i)) ) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 }
