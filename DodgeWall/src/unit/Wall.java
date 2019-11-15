@@ -109,8 +109,8 @@ public class Wall extends Unit {
 
 	@Override
 	public void draw(Graphics g) {
-		alpha += WallConfig.alphaIncrease;
 		color = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+		alpha += WallConfig.alphaIncrease;
 		g.setColor(color);
 		g.fillPolygon(wall);
 		g.setColor(new Color(0, 0, 0));
