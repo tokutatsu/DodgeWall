@@ -102,6 +102,10 @@ public class Wall extends Unit {
 		return wall.ypoints[WallConfig.buttomLeft];
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(color);
