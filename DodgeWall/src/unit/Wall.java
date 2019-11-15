@@ -11,6 +11,8 @@ public class Wall extends Unit {
 	private Polygon wall = new Polygon();
 	private String name;
 	private int moveCount;
+	private int alpha = WallConfig.alpha;
+	private int red, green, blue;
 
 	public Wall(String name) {
 		this.name = name;
@@ -108,6 +110,11 @@ public class Wall extends Unit {
 
 	@Override
 	public void draw(Graphics g) {
+		alpha += WallConfig.alphaIncrease;
+		red = color.getRed();
+		green = color.getGreen();
+		blue = color.getBlue();
+		color = new Color(red, green, blue, alpha);
 		g.setColor(color);
 		g.fillPolygon(wall);
 		g.setColor(new Color(0, 0, 0));

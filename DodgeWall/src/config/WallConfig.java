@@ -87,10 +87,11 @@ public class WallConfig {
 	// 壁が出現してから消えるまでの数
 	public static int frame = (WindowConfig.Height-yWall[0])/yUpperIncrease;
 	// 壁の色の透明度の初期値
-	public static final int alph = 0;
+	public static final int alpha = 0;
 	// 壁の色の透明度の増加量
-	public static final int alphIncrease = 255/frame;
-	// 壁の色(透明度以外)
+	public static final int alphaIncrease = 255/frame;
+	// 壁の色
+//	public static final Color color = new Color(255, 0, 255, alpha);
 	public static final Color color = new Color(255, 0, 255);
 
 	// 個数
