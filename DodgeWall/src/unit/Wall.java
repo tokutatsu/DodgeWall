@@ -12,6 +12,7 @@ public class Wall extends Unit {
 	private String name;
 	private int moveCount;
 	private int alpha = WallConfig.alpha;
+	private int position;
 
 	public Wall(String name) {
 		this.name = name;
@@ -20,24 +21,28 @@ public class Wall extends Unit {
 		switch (name) {
 		case "wall1":
 			// 壁1の初期値
+			this.position = 1;
 			for ( int i = 0; i < 4; i++ ) {
 				wall.addPoint(WallConfig.wall1.xpoints[i], WallConfig.wall1.ypoints[i]);
 			}
 			break;
 		case "wall2":
 			// 壁2の初期値
+			this.position = 2;
 			for ( int i = 0; i < 4; i++ ) {
 				wall.addPoint(WallConfig.wall2.xpoints[i], WallConfig.wall2.ypoints[i]);
 			}
 			break;
 		case "wall3":
 			// 壁3の初期値
+			this.position = 3;
 			for ( int i = 0; i < 4; i++ ) {
 				wall.addPoint(WallConfig.wall3.xpoints[i], WallConfig.wall3.ypoints[i]);
 			}
 			break;
 		case "wall4":
 			// 壁4の初期値
+			this.position = 4;
 			for ( int i = 0; i < 4; i++ ) {
 				wall.addPoint(WallConfig.wall4.xpoints[i], WallConfig.wall4.ypoints[i]);
 			}
@@ -107,6 +112,12 @@ public class Wall extends Unit {
 		return name;
 	}
 
+	// 壁のポジションを取得
+	public int getPosition() {
+		return position;
+	}
+
+	// 描画メソッド
 	@Override
 	public void draw(Graphics g) {
 		color = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
