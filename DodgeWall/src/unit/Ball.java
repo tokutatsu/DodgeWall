@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 import config.BallConfig;
 
 public class Ball extends Unit implements KeyListener {
-	private Color color = new Color(0, 255, 0);  // 色は仮決め
-	private Point point = new Point();
+	private Color color = BallConfig.color;  // 色は仮決め
+	private Point point;
 	private String name;
 	private int position;
 
@@ -18,16 +18,14 @@ public class Ball extends Unit implements KeyListener {
 		this.name = name;
 		switch (name) {
 		case "leftBall":
-//			point = BallConfig.ball2; break;  // 左のボール
+			// 左のボール
 			this.position = 2;
-			point.x = BallConfig.ball2.x;
-			point.y = BallConfig.ball2.y;
+			this.point = new Point(BallConfig.ball2.x, BallConfig.ball2.y);
 			break;
 		case "rightBall":
-//			point = BallConfig.ball3; break;  // 右のボール
+			// 右のボール
 			this.position = 3;
-			point.x = BallConfig.ball3.x;
-			point.y = BallConfig.ball3.y;
+			this.point = new Point(BallConfig.ball3.x, BallConfig.ball3.y);
 			break;
 		}
 	}
@@ -54,13 +52,13 @@ public class Ball extends Unit implements KeyListener {
 		case KeyEvent.VK_RIGHT:
 			if (name == "rightBall") {
 				position = 4;
-				point.x = BallConfig.ball4.x;
+				point.setLocation(BallConfig.ball4);
 			}
 			break;
 		case KeyEvent.VK_LEFT:
 			if (name == "leftBall") {
 				position = 1;
-				point.x = BallConfig.ball1.x;
+				point.setLocation(BallConfig.ball1);
 			}
 			break;
 		}
@@ -71,15 +69,15 @@ public class Ball extends Unit implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			if (name == "rightBall")
-				position = 3;{
-				point.x = BallConfig.ball3.x;
+			if (name == "rightBall") {
+				position = 3;
+				point.setLocation(BallConfig.ball3);
 			}
 			break;
 		case KeyEvent.VK_LEFT:
 			if (name == "leftBall") {
 				position = 2;
-				point.x = BallConfig.ball2.x;
+				point.setLocation(BallConfig.ball2);
 			}
 			break;
 		}

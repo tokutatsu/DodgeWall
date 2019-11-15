@@ -1,11 +1,15 @@
 package config;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class BallConfig {
 
 	// ボールのサイズ
 	public static final int size = WindowConfig.Width/5;
+
+	// ボールの色
+	public static final Color color = new Color(0, 255, 0);
 
 	// ボールの座標
 	public static final int xBall = -size/4;
