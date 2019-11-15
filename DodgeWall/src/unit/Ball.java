@@ -59,7 +59,7 @@ public class Ball extends Unit implements KeyListener {
 			break;
 		case KeyEvent.VK_LEFT:
 			if (name == "leftBall") {
-				this.position = 1;
+				position = 1;
 				point.x = BallConfig.ball1.x;
 			}
 			break;
@@ -72,13 +72,13 @@ public class Ball extends Unit implements KeyListener {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
 			if (name == "rightBall")
-				this.position = 3;{
-					point.x = BallConfig.ball3.x;
+				position = 3;{
+				point.x = BallConfig.ball3.x;
 			}
 			break;
 		case KeyEvent.VK_LEFT:
 			if (name == "leftBall") {
-				this.position = 2;
+				position = 2;
 				point.x = BallConfig.ball2.x;
 			}
 			break;
