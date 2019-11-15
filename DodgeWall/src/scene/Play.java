@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import config.BackgroundConfig;
 import config.BallConfig;
 import config.WallConfig;
+import process.Judge;
 import unit.Background;
 import unit.Ball;
 import unit.Lane;
@@ -26,8 +27,8 @@ public class Play extends JPanel implements Runnable {
 	private static int speed;
 	// 背景
 	// 追加したり削除したり賀しやすいためArrayListを採用
-	private static ArrayList<Background> leftBackgroundList = new ArrayList<Background>();
-	private static ArrayList<Background> rightBackgroundList = new ArrayList<Background>();
+	private static ArrayList<Background> backgroundLeft = new ArrayList<Background>();
+	private static ArrayList<Background> backgroundRight = new ArrayList<Background>();
 	// レーン
 	private static Lane back = new Lane("back");
 	private static Lane lane1 = new Lane("lane1");
@@ -35,13 +36,13 @@ public class Play extends JPanel implements Runnable {
 	private static Lane lane3 = new Lane("lane3");
 	private static Lane lane4 = new Lane("lane4");
 	// 壁
-	// leftWallは左から2番目，wallRigthは左から3番目に現れる壁
-	private static ArrayList<Wall> leftWallList = new ArrayList<Wall>();
-	private static ArrayList<Wall> rightWallList = new ArrayList<Wall>();
+	// wallLeftは左から2番目，wallRigthは左から3番目に現れる壁
+	private static ArrayList<Wall> wallLeft = new ArrayList<Wall>();
+	private static ArrayList<Wall> wallRigth = new ArrayList<Wall>();
 	// ボール
-	// leftBall -> 左，rightBall -> 右
-	private static Ball leftBall = new Ball("leftBall");
-	private static Ball rightBall = new Ball("rightBall");
+	// ballLeft -> 左，ballRight -> 右
+	private static Ball ballLeft = new Ball("leftBall");
+	private static Ball ballRight = new Ball("rightBall");
 	// 一時変数
 	private static int i;
 
@@ -54,8 +55,8 @@ public class Play extends JPanel implements Runnable {
 		stopBtn.addActionListener(e -> stopThread());
 		add(startBtn);
 		add(stopBtn);
-		addKeyListener(leftBall);
-		addKeyListener(rightBall);
+		addKeyListener(ballLeft);
+		addKeyListener(ballRight);
 		startThread();
 	}
 
@@ -76,27 +77,27 @@ public class Play extends JPanel implements Runnable {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		leftBackgroundList.forEach(b -> {b.draw(g);});
-		rightBackgroundList.forEach(b -> {b.draw(g);});
+		backgroundLeft.forEach(b -> {b.draw(g);});
+		backgroundRight.forEach(b -> {b.draw(g);});
 		back.draw(g);
 		lane1.draw(g);
 		lane2.draw(g);
 		lane3.draw(g);
 		lane4.draw(g);
 		// 描画の重なりの関係上逆順
-		for ( i = leftWallList.size()-1; i >= 0 && leftWallList.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
-				leftWallList.get(i).draw(g);
+		for ( i = wallLeft.size()-1; i >= 0 && wallLeft.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
+				wallLeft.get(i).draw(g);
 		}
-		leftBall.draw(g);
+		ballLeft.draw(g);
 		for ( ; i >= 0; i-- ) {
-				leftWallList.get(i).draw(g);
+				wallLeft.get(i).draw(g);
 		}
-		for ( i = rightWallList.size()-1; i >= 0 && rightWallList.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
-				rightWallList.get(i).draw(g);
+		for ( i = wallRigth.size()-1; i >= 0 && wallRigth.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
+				wallRigth.get(i).draw(g);
 		}
-		rightBall.draw(g);
+		ballRight.draw(g);
 		for ( ; i >= 0; i-- ) {
-				rightWallList.get(i).draw(g);
+				wallRigth.get(i).draw(g);
 		}
 
 		// キー操作を有効にするために必要
@@ -111,6 +112,9 @@ public class Play extends JPanel implements Runnable {
 		while (thread == thisThread) {
 			// オブジェクトたちを動かす
 			move();
+			if ( hit() ) {
+				stopThread();
+			}
 			repaint();
 			try {
 				Thread.sleep(speed);
@@ -120,85 +124,99 @@ public class Play extends JPanel implements Runnable {
 
 	// ArrayListを初期化
 	private void init() {
-		leftBackgroundList.add(new Background("leftBackground"));
-		rightBackgroundList.add(new Background("rightBackground"));
+		backgroundLeft.add(new Background("background1"));
+		backgroundRight.add(new Background("background2"));
 		if ( random.nextBoolean() ) {
-			leftWallList.add(new Wall("wall2"));
+			wallLeft.add(new Wall("wall2"));
 		} else {
-			leftWallList.add(new Wall("wall1"));
+			wallLeft.add(new Wall("wall1"));
 		}
 		if ( random.nextBoolean() ) {
-			rightWallList.add(new Wall("wall3"));
+			wallRigth.add(new Wall("wallh3"));
 		} else {
-			rightWallList.add(new Wall("wall4"));
+			wallRigth.add(new Wall("wall4"));
 		}
 	}
 
 	// 各オブジェクトをmoveメソッドで動かす
 	private void move() {
-		for ( i = 0; i < leftBackgroundList.size(); i++ ) {
+		for ( i = 0; i < backgroundLeft.size(); i++ ) {
 			// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
-			if ( leftBackgroundList.get(i).nextTrigger() && leftBackgroundList.size() < BackgroundConfig.pieces ) {
-				leftBackgroundList.add(new Background("leftBackground"));
-				leftBackgroundList.get(i).move();
+			if ( backgroundLeft.get(i).nextTrigger() && backgroundLeft.size() < BackgroundConfig.pieces ) {
+				backgroundLeft.add(new Background("background1"));
+				backgroundLeft.get(i).move();
 			// 背景が画面内にあれば背景をその動かす
-			} else if ( leftBackgroundList.get(i).isVisible() ) {
-				leftBackgroundList.get(i).move();
+			} else if ( backgroundLeft.get(i).isVisible() ) {
+				backgroundLeft.get(i).move();
 			// 背景が画面内になければその背景をArrayListから削除して新しい背景をArrayListに追加する．
 			} else {
-				leftBackgroundList.remove(i);
-				leftBackgroundList.add(new Background("leftBackground"));
+				backgroundLeft.remove(i);
+				backgroundLeft.add(new Background("background1"));
 			}
 		}
-		for ( i = 0; i < rightBackgroundList.size(); i++ ) {
-			if ( rightBackgroundList.get(i).nextTrigger() && rightBackgroundList.size() < BackgroundConfig.pieces ) {
-				rightBackgroundList.add(new Background("rightBackground"));
-				rightBackgroundList.get(i).move();
-			} else if ( rightBackgroundList.get(i).isVisible() ) {
-				rightBackgroundList.get(i).move();
+		for ( i = 0; i < backgroundRight.size(); i++ ) {
+			if ( backgroundRight.get(i).nextTrigger() && backgroundRight.size() < BackgroundConfig.pieces ) {
+				backgroundRight.add(new Background("background2"));
+				backgroundRight.get(i).move();
+			} else if ( backgroundRight.get(i).isVisible() ) {
+				backgroundRight.get(i).move();
 			} else {
-				rightBackgroundList.remove(i);
-				rightBackgroundList.add(new Background("rightBackground"));
+				backgroundRight.remove(i);
+				backgroundRight.add(new Background("background2"));
 			}
 		}
-		for ( i = 0; i < leftWallList.size(); i++ ) {
-			if ( leftWallList.get(i).nextTrigger() && leftWallList.size() < WallConfig.pieces ) {
+		for ( i = 0; i < wallLeft.size(); i++ ) {
+			if ( wallLeft.get(i).nextTrigger() && wallLeft.size() < WallConfig.pieces ) {
 				if ( random.nextBoolean() ) {
-					leftWallList.add(new Wall("wall2"));
+					wallLeft.add(new Wall("wall2"));
 				} else {
-					leftWallList.add(new Wall("wall1"));
+					wallLeft.add(new Wall("wall1"));
 				}
-				leftWallList.get(i).move();
-			} else if ( leftWallList.get(i).isVisible() ) {
-				leftWallList.get(i).move();
+				wallLeft.get(i).move();
+			} else if ( wallLeft.get(i).isVisible() ) {
+				wallLeft.get(i).move();
 			} else {
-				leftWallList.remove(i);
+				wallLeft.remove(i);
 				if ( random.nextBoolean() ) {
-					leftWallList.add(new Wall("wall2"));
+					wallLeft.add(new Wall("wall2"));
 				} else {
-					leftWallList.add(new Wall("wall1"));
+					wallLeft.add(new Wall("wall1"));
 				}
 			}
 		}
-		for ( i = 0; i < rightWallList.size(); i++ ) {
-			if ( rightWallList.get(i).nextTrigger() && rightWallList.size() < WallConfig.pieces ) {
+		for ( i = 0; i < wallRigth.size(); i++ ) {
+			if ( wallRigth.get(i).nextTrigger() && wallRigth.size() < WallConfig.pieces ) {
 				if ( random.nextBoolean() ) {
-					rightWallList.add(new Wall("wall3"));
+					wallRigth.add(new Wall("wall3"));
 				} else {
-					rightWallList.add(new Wall("wall4"));
+					wallRigth.add(new Wall("wall4"));
 				}
-				rightWallList.get(i).move();
-			} else if ( rightWallList.get(i).isVisible() ) {
-				rightWallList.get(i).move();
+				wallRigth.get(i).move();
+			} else if ( wallRigth.get(i).isVisible() ) {
+				wallRigth.get(i).move();
 			} else {
-				rightWallList.remove(i);
+				wallRigth.remove(i);
 				if ( random.nextBoolean() ) {
-					rightWallList.add(new Wall("wall3"));
+					wallRigth.add(new Wall("wall3"));
 				} else {
-					rightWallList.add(new Wall("wall4"));
+					wallRigth.add(new Wall("wall4"));
 				}
 			}
 		}
+	}
+
+	private boolean hit() {
+		for ( int i = 0; i < wallLeft.size(); i++ ) {
+			if ( Judge.hitJudge(ballLeft, wallLeft.get(i)) ) {
+				return true;
+			}
+		}
+		for ( int i = 0; i < wallRigth.size(); i++ ) {
+			if ( Judge.hitJudge(ballLeft, wallRigth.get(i)) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
