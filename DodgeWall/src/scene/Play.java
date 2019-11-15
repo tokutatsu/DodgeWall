@@ -48,7 +48,7 @@ public class Play extends JPanel implements Runnable {
 
 	//コンストラクタ
 	public Play() {
-		speed = 30;
+		speed = 50;
 		JButton startBtn = new JButton("start");
 		startBtn.addActionListener(e -> startThread());
 		JButton stopBtn = new JButton("stop");
@@ -85,14 +85,14 @@ public class Play extends JPanel implements Runnable {
 		lane3.draw(g);
 		lane4.draw(g);
 		// 描画の重なりの関係上逆順
-		for ( i = leftWallList.size()-1; i >= 0 && leftWallList.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
+		for ( i = leftWallList.size()-1; i >= 0 && leftWallList.get(i).getButtomLeft() < BallConfig.yBall+BallConfig.size; i-- ) {
 				leftWallList.get(i).draw(g);
 		}
 		leftBall.draw(g);
 		for ( ; i >= 0; i-- ) {
 				leftWallList.get(i).draw(g);
 		}
-		for ( i = rightWallList.size()-1; i >= 0 && rightWallList.get(i).getButtomLeft() > BallConfig.yBall; i-- ) {
+		for ( i = rightWallList.size()-1; i >= 0 && rightWallList.get(i).getButtomLeft() < BallConfig.yBall+BallConfig.size; i-- ) {
 				rightWallList.get(i).draw(g);
 		}
 		rightBall.draw(g);
@@ -113,7 +113,7 @@ public class Play extends JPanel implements Runnable {
 			// オブジェクトたちを動かす
 			move();
 			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
-				stopThread();
+//				stopThread();
 			}
 			repaint();
 			try {
