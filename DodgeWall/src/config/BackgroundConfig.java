@@ -25,9 +25,9 @@ public class BackgroundConfig {
 
 	// 背景の初期値
 	// 左側の背景の座標の初期値
-	public static final Polygon background1 = new Polygon(x, y, 3);
+	public static final Polygon leftBackground = new Polygon(x, y, 3);
 	// 右側の背景の座標の初期値
-	public static final Polygon background2 = new Polygon(x, y, 3);
+	public static final Polygon rightBackground = new Polygon(x, y, 3);
 
 	// 3角形の配置
 	public static final int upper = 0;
@@ -36,22 +36,22 @@ public class BackgroundConfig {
 
 	// 左側の背景の動き
 	// 左側の背景の上の座標の動き
-	public static final Point upperIncreaseBackground1 = new Point(-6, -5);
+	public static final Point upperIncreaseleftBackground = new Point(-6, -5);
 	// 左側の背景の右下の座標の動き
-	public static final Point rightIncreaseBackground1 = new Point(-4, 10);
+	public static final Point rightIncreaseleftBackground = new Point(-4, 10);
 	// 左側の背景の左下の座標の動き
-	public static final Point leftIncreaseBackground1 = new Point(-8, 10);
+	public static final Point leftIncreaseleftBackground = new Point(-8, 10);
 
 	// 右側の背景の動き
 	// 右側の背景の上の座標の動き
-	public static final Point upperIncreaseBackground2 = new Point(6, -5);
+	public static final Point upperIncreaserightBackground = new Point(6, -5);
 	// 右側の背景の右下の座標の動き
-	public static final Point rightIncreaseBackground2 = new Point(4, 10);
+	public static final Point rightIncreaserightBackground = new Point(4, 10);
 	// 右側の背景の左下の座標の動き
-	public static final Point leftIncreaseBackground2 = new Point(8, 10);
+	public static final Point leftIncreaserightBackground = new Point(8, 10);
 
 	// 1つの背景のフレーム数
-	public static final int frame = WindowConfig.Width/leftIncreaseBackground2.x;
+	public static final int frame = WindowConfig.Width/leftIncreaserightBackground.x;
 
 	// 背景の色
 	// 背景色の透明度の初期値
