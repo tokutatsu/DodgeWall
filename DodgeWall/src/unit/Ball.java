@@ -17,13 +17,13 @@ public class Ball extends Unit implements KeyListener {
 	public Ball(String name) {
 		this.name = name;
 		switch (name) {
-		case "ballLeft":
+		case "leftBall":
 //			point = BallConfig.ball2; break;  // 左のボール
 			this.position = 2;
 			point.x = BallConfig.ball2.x;
 			point.y = BallConfig.ball2.y;
 			break;
-		case "ballRight":
+		case "rightBall":
 //			point = BallConfig.ball3; break;  // 右のボール
 			this.position = 3;
 			point.x = BallConfig.ball3.x;
