@@ -91,8 +91,8 @@ public class WallConfig {
 	// 壁の色の透明度の増加量
 	public static final int alphaIncrease = 255/frame;
 	// 壁の色
-//	public static final Color color = new Color(255, 0, 255, alpha);
-	public static final Color color = new Color(255, 0, 255);
+	public static final Color color = new Color(255, 0, 255, alpha);
+//	public static final Color color = new Color(255, 0, 255);
 
 	// 個数
 	public static final int pieces = 5;
