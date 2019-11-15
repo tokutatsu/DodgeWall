@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import config.BackgroundConfig;
 import config.BallConfig;
 import config.WallConfig;
+import process.Judge;
 import unit.Background;
 import unit.Ball;
 import unit.Lane;
@@ -25,7 +26,7 @@ public class Play extends JPanel implements Runnable {
 	// speedの値が大きいほど遅くなる
 	private static int speed;
 	// 背景
-	// 追加したり削除したり賀しやすいためArrayListを採用
+	// 追加したり削除したりがしやすいためArrayListを採用
 	private static ArrayList<Background> leftBackgroundList = new ArrayList<Background>();
 	private static ArrayList<Background> rightBackgroundList = new ArrayList<Background>();
 	// レーン
@@ -35,7 +36,7 @@ public class Play extends JPanel implements Runnable {
 	private static Lane lane3 = new Lane("lane3");
 	private static Lane lane4 = new Lane("lane4");
 	// 壁
-	// leftWallは左から2番目，wallRigthは左から3番目に現れる壁
+	// leftWallは左から2番目，rightWallは左から3番目に現れる壁
 	private static ArrayList<Wall> leftWallList = new ArrayList<Wall>();
 	private static ArrayList<Wall> rightWallList = new ArrayList<Wall>();
 	// ボール
@@ -111,6 +112,9 @@ public class Play extends JPanel implements Runnable {
 		while (thread == thisThread) {
 			// オブジェクトたちを動かす
 			move();
+			if ( hit() ) {
+				stopThread();
+			}
 			repaint();
 			try {
 				Thread.sleep(speed);
@@ -199,6 +203,20 @@ public class Play extends JPanel implements Runnable {
 				}
 			}
 		}
+	}
+
+	private boolean hit() {
+		for ( int i = 0; i < leftWallList.size(); i++ ) {
+			if ( Judge.hitJudge(leftBall, leftWallList.get(i)) ) {
+				return true;
+			}
+		}
+		for ( int i = 0; i < rightWallList.size(); i++ ) {
+			if ( Judge.hitJudge(rightBall, rightWallList.get(i)) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
