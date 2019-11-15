@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import config.WindowConfig;
 import scene.Play;
 
 public class Main {
@@ -12,7 +13,7 @@ public class Main {
 			frame.add(play);
 			frame.pack();
 			frame.setVisible(true);
-			frame.setSize(500, 1000);
+			frame.setSize(WindowConfig.Width, WindowConfig.Height);
 			frame.setLocationRelativeTo(null);
 			frame.setFocusable(true);
 			frame.setResizable(false);
