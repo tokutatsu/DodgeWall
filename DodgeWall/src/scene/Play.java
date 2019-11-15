@@ -54,6 +54,8 @@ public class Play extends JPanel implements Runnable {
 		stopBtn.addActionListener(e -> stopThread());
 		add(startBtn);
 		add(stopBtn);
+		addKeyListener(ballLeft);
+		addKeyListener(ballRight);
 		startThread();
 	}
 
@@ -96,6 +98,9 @@ public class Play extends JPanel implements Runnable {
 		for ( ; i >= 0; i-- ) {
 				wallRigth.get(i).draw(g);
 		}
+
+		// キー操作を有効にするために必要
+		requestFocusInWindow();
 	}
 
 	@Override
