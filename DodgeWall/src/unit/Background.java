@@ -11,6 +11,7 @@ public class Background extends Unit {
 	private Polygon background = new Polygon();
 	private String name;
 	private int moveCount;
+	private int alpha = BackgroundConfig.alpha;
 
 	public Background(String name) {
 		this.name = name;
@@ -75,6 +76,8 @@ public class Background extends Unit {
 
 	@Override
 	public void draw(Graphics g) {
+		color = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+		alpha += BackgroundConfig.alphaIncrease;
 		g.setColor(color);
 		g.fillPolygon(background);
 	}

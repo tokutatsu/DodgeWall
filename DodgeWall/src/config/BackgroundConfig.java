@@ -59,7 +59,7 @@ public class BackgroundConfig {
 	// 背景の色の透明度の増加量
 	public static final int alphaIncrease = 255/frame;
 	// 背景の色(透明度以外)
-	public static final Color color = new Color(0, 0, 100);
+	public static final Color color = new Color(0, 0, 100, alpha);
 
 	// 個数
 	public static final int pieces = 3;
