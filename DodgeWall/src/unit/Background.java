@@ -17,14 +17,14 @@ public class Background extends Unit {
 		this.moveCount = 0;
 
 		switch (name) {
-		case "background1":
+		case "leftBackground":
 			// 代入だと参照のためpointsごとに追加していく
 			// backgroundの初期値
 			for ( int i = 0; i < 3; i++ ) {
 				background.addPoint(BackgroundConfig.background1.xpoints[i], BackgroundConfig.background1.ypoints[i]);
 			}
 			break;
-		case "background2":
+		case "rightBackground":
 			// backgroundの初期値
 			for ( int i = 0; i < 3; i++ ) {
 				background.addPoint(BackgroundConfig.background2.xpoints[i], BackgroundConfig.background2.ypoints[i]);
@@ -35,7 +35,7 @@ public class Background extends Unit {
 
 	public void move() {
 		switch (name) {
-		case "background1":
+		case "leftBackground":
 			// x座標の遷移
 			background.xpoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseBackground1.x;
 			background.xpoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground1.x;
@@ -45,7 +45,7 @@ public class Background extends Unit {
 			background.ypoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground1.y;
 			background.ypoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseBackground1.y;
 			break;
-		case "background2":
+		case "rightBackground":
 			// x座標の遷移
 			background.xpoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseBackground2.x;
 			background.xpoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground2.x;
