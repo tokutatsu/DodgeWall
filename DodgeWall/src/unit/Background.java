@@ -21,13 +21,13 @@ public class Background extends Unit {
 			// 代入だと参照のためpointsごとに追加していく
 			// backgroundの初期値
 			for ( int i = 0; i < 3; i++ ) {
-				background.addPoint(BackgroundConfig.leftBackground.xpoints[i], BackgroundConfig.leftBackground.ypoints[i]);
+				background.addPoint(BackgroundConfig.background1.xpoints[i], BackgroundConfig.background1.ypoints[i]);
 			}
 			break;
 		case "rightBackground":
 			// backgroundの初期値
 			for ( int i = 0; i < 3; i++ ) {
-				background.addPoint(BackgroundConfig.rightBackground.xpoints[i], BackgroundConfig.rightBackground.ypoints[i]);
+				background.addPoint(BackgroundConfig.background2.xpoints[i], BackgroundConfig.background2.ypoints[i]);
 			}
 			break;
 		}
@@ -37,23 +37,23 @@ public class Background extends Unit {
 		switch (name) {
 		case "leftBackground":
 			// x座標の遷移
-			background.xpoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseleftBackground.x;
-			background.xpoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseleftBackground.x;
-			background.xpoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseleftBackground.x;
+			background.xpoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseBackground1.x;
+			background.xpoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground1.x;
+			background.xpoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseBackground1.x;
 			// y座標の遷移
-			background.ypoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseleftBackground.y;
-			background.ypoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseleftBackground.y;
-			background.ypoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseleftBackground.y;
+			background.ypoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseBackground1.y;
+			background.ypoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground1.y;
+			background.ypoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseBackground1.y;
 			break;
 		case "rightBackground":
 			// x座標の遷移
-			background.xpoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaserightBackground.x;
-			background.xpoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaserightBackground.x;
-			background.xpoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaserightBackground.x;
+			background.xpoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseBackground2.x;
+			background.xpoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground2.x;
+			background.xpoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseBackground2.x;
 			// y座標の遷移
-			background.ypoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaserightBackground.y;
-			background.ypoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaserightBackground.y;
-			background.ypoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaserightBackground.y;
+			background.ypoints[BackgroundConfig.upper] += BackgroundConfig.upperIncreaseBackground2.y;
+			background.ypoints[BackgroundConfig.right] += BackgroundConfig.rightIncreaseBackground2.y;
+			background.ypoints[BackgroundConfig.left] += BackgroundConfig.leftIncreaseBackground2.y;
 			break;
 		}
 		moveCount++;
