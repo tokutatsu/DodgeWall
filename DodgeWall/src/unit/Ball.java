@@ -11,18 +11,21 @@ public class Ball extends Unit implements KeyListener {
 	private Color color = new Color(0, 255, 0);  // 色は仮決め
 	private Point point = new Point();
 	private String name;
+	private int position;
 
 	// コンストラクタ
 	public Ball(String name) {
 		this.name = name;
 		switch (name) {
-		case "ball2":
+		case "leftBall":
 //			point = BallConfig.ball2; break;  // 左のボール
+			this.position = 2;
 			point.x = BallConfig.ball2.x;
 			point.y = BallConfig.ball2.y;
 			break;
-		case "ball3":
+		case "rightBall":
 //			point = BallConfig.ball3; break;  // 右のボール
+			this.position = 3;
 			point.x = BallConfig.ball3.x;
 			point.y = BallConfig.ball3.y;
 			break;
@@ -32,6 +35,11 @@ public class Ball extends Unit implements KeyListener {
 	// ボールの座標を取得
 	public Point getPoint() {
 		return point;
+	}
+
+	// ボールのポジションを取得
+	public int getPosition() {
+		return position;
 	}
 
 
@@ -44,13 +52,15 @@ public class Ball extends Unit implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			if (name == "ball3") {
-				point.x += BallConfig.moveDistance;
+			if (name == "rightBall") {
+				position = 4;
+				point.x = BallConfig.ball4.x;
 			}
 			break;
 		case KeyEvent.VK_LEFT:
-			if (name == "ball2") {
-				point.x -= BallConfig.moveDistance;
+			if (name == "leftBall") {
+				position = 1;
+				point.x = BallConfig.ball1.x;
 			}
 			break;
 		}
@@ -61,13 +71,15 @@ public class Ball extends Unit implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			if (name == "ball3") {
-				point.x -= BallConfig.moveDistance;
+			if (name == "rightBall")
+				position = 3;{
+				point.x = BallConfig.ball3.x;
 			}
 			break;
 		case KeyEvent.VK_LEFT:
-			if (name == "ball2") {
-				point.x += BallConfig.moveDistance;
+			if (name == "leftBall") {
+				position = 2;
+				point.x = BallConfig.ball2.x;
 			}
 			break;
 		}
