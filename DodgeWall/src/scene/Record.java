@@ -12,9 +12,8 @@ import config.WindowConfig;
 
 public class Record extends JPanel implements ActionListener {
 
-	private static JButton titleButton;
-	private static JButton exitButton;
-	private Screen screen;
+	private JButton titleButton;
+	private JButton exitButton;
 
 	public Record(Screen screen) {
 		setLayout(null);

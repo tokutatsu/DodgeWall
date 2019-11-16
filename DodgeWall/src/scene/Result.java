@@ -15,14 +15,14 @@ import process.Ranking;
 public class Result extends JPanel implements ActionListener {
 
 	private int score;
-	private static int scoreMessageLength;
+	private int scoreMessageLength;
 	private String userName;
-	private static String scoreMessage;
-	private static JTextField inputUserName;
-	private static JButton titleButton;
-	private static JButton retryButton;
-	private static JButton rankingButton;
-	private static JButton exitButton;
+	private String scoreMessage;
+	private JTextField inputUserName;
+	private JButton titleButton;
+	private JButton retryButton;
+	private JButton rankingButton;
+	private JButton exitButton;
 	private Screen screen;
 
 	public Result(int score, Screen screen) {
