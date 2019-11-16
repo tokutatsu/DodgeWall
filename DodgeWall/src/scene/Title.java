@@ -1,5 +1,6 @@
 package scene;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import config.TitleConfig;
+import config.WindowConfig;
 
 public class Title extends JPanel implements ActionListener {
 
@@ -20,6 +22,7 @@ public class Title extends JPanel implements ActionListener {
 	private static String username;
 
 	public Title(String userName) {
+		setLayout(null);
 		textField = new JTextField(userName);
 		username = textField.getText();
 
@@ -34,7 +37,6 @@ public class Title extends JPanel implements ActionListener {
 		// startボタン
 		startButton = new JButton("start");
 		startButton.addActionListener(this);
-		startButton.setBounds(160, 500, 120, 30);
 		startButton.setBounds(TitleConfig.startButtonX, TitleConfig.startButtonY, TitleConfig.startButtonWidth, TitleConfig.startButtonHeight);
 		this.add(startButton);
 		// rankingボタン
@@ -71,21 +73,21 @@ public class Title extends JPanel implements ActionListener {
 		}
 	}
 
-//	@Override
-//	public void paintComponent(Graphics g) {
+	@Override
+	public void paintComponent(Graphics g) {
 
-//		super.paintComponent(g);
+		super.paintComponent(g);
 
 		// title
-//		g.setColor(TitleConfig.titleColor);
-//		g.setFont(TitleConfig.titleFont);
-//		g.drawString(TitleConfig.titleName, WindowConfig.Width/2-g.getFontMetrics().stringWidth(TitleConfig.titleName)/2, TitleConfig.titleY);
+		g.setColor(TitleConfig.titleColor);
+		g.setFont(TitleConfig.titleFont);
+		g.drawString(TitleConfig.titleName, WindowConfig.Width/2-g.getFontMetrics().stringWidth(TitleConfig.titleName)/2, TitleConfig.titleY);
 		// username
-//		if ( !username.equals(TitleConfig.usernameInit) ) {
-//			g.setColor(TitleConfig.usernameColor);
-//			g.setFont(TitleConfig.usernameFont);
-//			g.drawString(username, WindowConfig.Width/2-g.getFontMetrics().stringWidth(username)/2, TitleConfig.usernameY);
-//		}
-//	}
+		if ( !username.equals(TitleConfig.usernameInit) ) {
+			g.setColor(TitleConfig.usernameColor);
+			g.setFont(TitleConfig.usernameFont);
+			g.drawString(username, WindowConfig.Width/2-g.getFontMetrics().stringWidth(username)/2, TitleConfig.usernameY);
+		}
+	}
 
 }

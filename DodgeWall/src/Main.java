@@ -1,18 +1,19 @@
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import config.TitleConfig;
 import config.WindowConfig;
-import scene.Play;
+import scene.Title;
 
 public class Main {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			JFrame frame = new JFrame("DodgeWall");
-			Play play = new Play();
-			frame.add(play);
-//			Title title = new Title(TitleConfig.usernameInit);
-//			frame.add(title);
+//			Play play = new Play();
+//			frame.add(play);
+			Title title = new Title(TitleConfig.usernameInit);
+			frame.add(title);
 			frame.pack();
 			frame.setVisible(true);
 			frame.setSize(WindowConfig.Width, WindowConfig.Height);
