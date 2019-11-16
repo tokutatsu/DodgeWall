@@ -14,9 +14,11 @@ public class Record extends JPanel implements ActionListener {
 
 	private static JButton titleButton;
 	private static JButton exitButton;
+	private Screen screen;
 
-	public Record() {
+	public Record(Screen screen) {
 		setLayout(null);
+		this.screen = screen;
 
 		// titleボタン
 		titleButton = new JButton("title");

@@ -44,7 +44,7 @@ public class Title extends JPanel implements ActionListener {
 			screen.changeJPanel(new Play(screen));
 			break;
 		case "ranking":
-			screen.changeJPanel(new Record());
+			screen.changeJPanel(new Record(screen));
 			break;
 		case "exit":
 			System.exit(0);
