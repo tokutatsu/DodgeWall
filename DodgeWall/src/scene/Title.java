@@ -58,7 +58,7 @@ public class Title extends JPanel implements ActionListener {
 		// title
 		g.setColor(TitleConfig.titleColor);
 		g.setFont(TitleConfig.titleFont);
-		g.drawString(TitleConfig.titleName, WindowConfig.Width/2-g.getFontMetrics().stringWidth(TitleConfig.titleName)/2, TitleConfig.titleY);
+		g.drawString(TitleConfig.titleName, (WindowConfig.Width-g.getFontMetrics().stringWidth(TitleConfig.titleName)-g.getFontMetrics().charWidth('l'))/2, TitleConfig.titleY);
 	}
 
 }
