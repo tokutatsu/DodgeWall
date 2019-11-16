@@ -14,8 +14,9 @@ public class Ranking {
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("select name, score from ranking order by score desc, id desc offset 0 limit 10");
 		ArrayList<HashMap<String, String>> recordList = new ArrayList<HashMap<String, String>>();
-		HashMap<String, String> record  = new HashMap<String, String>();
+		HashMap<String, String> record;
 		while ( resultSet.next() ) {
+			record = new HashMap<String, String>();
 			record.put("userName", resultSet.getString("name"));
 			record.put("score", Integer.toString(resultSet.getInt("score")));
 			recordList.add(record);

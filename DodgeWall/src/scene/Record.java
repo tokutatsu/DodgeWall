@@ -70,7 +70,11 @@ public class Record extends JPanel implements ActionListener {
 		FontMetrics recordFontMetrics = g.getFontMetrics();
 		for ( int i = 0; i < recordList.size(); i++ ) {
 			String record = Integer.toString(i+1) + ". " + recordList.get(i).get("userName") + " " + recordList.get(i).get("score");
-			g.drawString(record, (WindowConfig.Width-recordFontMetrics.stringWidth(record)-recordFontMetrics.charWidth('l'))/2, RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
+			g.drawString(Integer.toString(i+1), RecordConfig.rankX-Integer.toString(i+1).length() * g.getFontMetrics().charWidth('1'), RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
+			g.drawString(". ", RecordConfig.userNameX-g.getFontMetrics().stringWidth(". "), RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
+			g.drawString(recordList.get(i).get("userName"), RecordConfig.userNameX, RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
+			g.drawString(" ", RecordConfig.scoreX-g.getFontMetrics().charWidth(' '), RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
+			g.drawString(recordList.get(i).get("score"), RecordConfig.scoreX - recordList.get(i).get("score").length() * g.getFontMetrics().charWidth('1'), RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
 		}
 	}
 
