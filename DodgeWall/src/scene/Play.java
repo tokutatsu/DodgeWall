@@ -57,7 +57,7 @@ public class Play extends JPanel implements Runnable {
 	//コンストラクタ
 	public Play(Screen screen) {
 		this.screen = screen;
-		sleepTime = PlayConfig.minSleepTime;
+		sleepTime = PlayConfig.maxSleepTime;
 		JButton startBtn = new JButton("start");
 		startBtn.addActionListener(e -> startThread());
 		JButton stopBtn = new JButton("stop");
@@ -215,7 +215,7 @@ public class Play extends JPanel implements Runnable {
 				rightWallList.get(i).move();
 			} else {
 				rightWallList.remove(i);
-				if ( Score.getScore()%3 == 0 && sleepTime >= PlayConfig.maxSleepTime ) {
+				if ( Score.getScore()%3 == 0 && sleepTime >= PlayConfig.minSleepTime ) {
 					sleepTime--;
 				}
 				Score.addScore();
