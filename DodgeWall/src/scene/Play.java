@@ -11,6 +11,7 @@ import config.BackgroundConfig;
 import config.BallConfig;
 import config.WallConfig;
 import process.Judge;
+import process.Score;
 import unit.Background;
 import unit.Ball;
 import unit.Lane;
@@ -109,6 +110,7 @@ public class Play extends JPanel implements Runnable {
 		Thread thisThread = Thread.currentThread();
 		// 背景と壁の初期化
 		init();
+		Score.init();
 		while (thread == thisThread) {
 			// オブジェクトたちを動かす
 			move();
@@ -196,6 +198,7 @@ public class Play extends JPanel implements Runnable {
 				rightWallList.get(i).move();
 			} else {
 				rightWallList.remove(i);
+				Score.addScore();
 				if ( random.nextBoolean() ) {
 					rightWallList.add(new Wall("wall3"));
 				} else {
