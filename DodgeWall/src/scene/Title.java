@@ -12,10 +12,9 @@ import config.WindowConfig;
 
 public class Title extends JPanel implements ActionListener {
 
-
-	private static JButton startButton;
-	private static JButton rankingButton;
-	private static JButton exitButton;
+	private JButton startButton;
+	private JButton rankingButton;
+	private JButton exitButton;
 	private Screen screen;
 
 	public Title(Screen screen) {
@@ -45,6 +44,7 @@ public class Title extends JPanel implements ActionListener {
 			screen.changeJPanel(new Play(screen));
 			break;
 		case "ranking":
+			screen.changeJPanel(new Record());
 			break;
 		case "exit":
 			System.exit(0);
