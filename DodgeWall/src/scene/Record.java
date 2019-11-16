@@ -4,12 +4,15 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import config.RecordConfig;
 import config.WindowConfig;
+import process.Ranking;
 
 public class Record extends JPanel implements ActionListener {
 
@@ -48,7 +51,12 @@ public class Record extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		String head = new String("Ranking");
-		String score = new String("1. 12345");
+		ArrayList<HashMap<String, String>> recordList = new ArrayList<HashMap<String, String>>();
+		try {
+			recordList = Ranking.getTopTenRanking();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// headの表示
 		g.setColor(RecordConfig.headColor);
@@ -60,8 +68,9 @@ public class Record extends JPanel implements ActionListener {
 		g.setColor(RecordConfig.recordColor);
 		g.setFont(RecordConfig.recordFont);
 		FontMetrics recordFontMetrics = g.getFontMetrics();
-		for ( int i = 0; i < 10; i++ ) {
-			g.drawString(score, (WindowConfig.Width-recordFontMetrics.stringWidth(score)-recordFontMetrics.charWidth('l'))/2, RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
+		for ( int i = 0; i < recordList.size(); i++ ) {
+			String record = Integer.toString(i+1) + ". " + recordList.get(i).get("userName") + " " + recordList.get(i).get("score");
+			g.drawString(record, (WindowConfig.Width-recordFontMetrics.stringWidth(record)-recordFontMetrics.charWidth('l'))/2, RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
 		}
 	}
 
