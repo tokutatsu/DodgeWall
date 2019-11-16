@@ -3,45 +3,71 @@ title dodgeWall
 
 package unit {
     abstract Unit {
-        abstract draw()
+        abstract draw(): void
     }
 
     class Ball {
-        size
-        color
-        moveDistance
-        point
-        name
+        - color: Color
+        - point: Point
+        - name: String
+        - position: int
 
-        Ball(ballName)
-        getPoint()
+        + Ball(name: String)
+
+        + getPoint(): Point
+        + getPosition(): int
+
+        + void keyTyped(e: KeyEvent): void
+        + void keyPressed(e: KeyEvent): void
+        + keyReleased(e: KeyEvent): void
+
+        + draw(g: Graphics): void
     }
 
     class Lane {
-        point
-        color
-        borderColor
-        borderWidth
-        name
+        - lane: Polygon
+        - color: Color
 
-        Lane(laneName)
-        getPoint()
+        + Lane(name: String)
+
+        + getPolygon(): Polygon
+
+        + draw(g: Graphics): void
     }
 
     class Wall {
-        height
-        color
-        startPoint
-        name
+        - color: Color
+        - wall: Polygon
+        - name: String
+        - moveCount: int
+        - alpha: int
+        - int: position
 
-        Wall(wallName)
+        + Wall(name: String)
+
+        + move(): void
+        + isVisible(): boolean
+        + 
+        + getButtomLeft(): int
+        + getPosition(): int
+
+        + draw(g: Graphics): void
     }
 
     class Background {
-        color
-        name
+        - color: Collor
+        - background: Polygon
+        - name: String
+        - moveCount: int
+        - alpha: int
 
-        Backround(backgroundName)
+        + Backround(name: String)
+
+        + move(): void
+        + isVisible(): boolean
+        +
+
+        + draw(g: Graphics): void
     }
 }
 
@@ -90,6 +116,10 @@ package process {
         setMyHighScore(score)
         getMyHighScore()
     }
+}
+
+class Main {
+    + main(): void
 }
 
 Ball --|> Unit
