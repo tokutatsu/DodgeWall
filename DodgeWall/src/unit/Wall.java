@@ -108,10 +108,6 @@ public class Wall extends Unit {
 		return wall.ypoints[WallConfig.buttomLeft];
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	// 壁のポジションを取得
 	public int getPosition() {
 		return position;
