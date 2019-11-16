@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import config.BackgroundConfig;
 import config.BallConfig;
+import config.PlayConfig;
 import config.WallConfig;
+import config.WindowConfig;
 import process.Judge;
 import process.Score;
 import unit.Background;
@@ -48,10 +51,14 @@ public class Play extends JPanel implements Runnable {
 	private static int i;
 	private Screen screen;
 
+	// ゲームオーバーのラベル
+	private JLabel label = new JLabel("GAME OVER");
+
 	//コンストラクタ
 	public Play(Screen screen) {
 		this.screen = screen;
-		speed = 30;
+//		setLayout(null);
+		speed = PlayConfig.minSpeed;
 		JButton startBtn = new JButton("start");
 		startBtn.addActionListener(e -> startThread());
 		JButton stopBtn = new JButton("stop");
@@ -91,18 +98,18 @@ public class Play extends JPanel implements Runnable {
 		lane4.draw(g);
 		// 描画の重なりの関係上逆順
 		for ( i = leftWallList.size()-1; i >= 0 && leftWallList.get(i).getButtomLeft() < BallConfig.yBall+BallConfig.size; i-- ) {
-				leftWallList.get(i).draw(g);
+			leftWallList.get(i).draw(g);
 		}
 		leftBall.draw(g);
 		for ( ; i >= 0; i-- ) {
-				leftWallList.get(i).draw(g);
+			leftWallList.get(i).draw(g);
 		}
 		for ( i = rightWallList.size()-1; i >= 0 && rightWallList.get(i).getButtomLeft() < BallConfig.yBall+BallConfig.size; i-- ) {
-				rightWallList.get(i).draw(g);
+			rightWallList.get(i).draw(g);
 		}
 		rightBall.draw(g);
 		for ( ; i >= 0; i-- ) {
-				rightWallList.get(i).draw(g);
+			rightWallList.get(i).draw(g);
 		}
 
 		// キー操作を有効にするために必要
@@ -117,6 +124,14 @@ public class Play extends JPanel implements Runnable {
 			// オブジェクトたちを動かす
 			move();
 			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
+				label.setFont(PlayConfig.font);
+				int width = label.getFontMetrics(PlayConfig.font).stringWidth("GAME OVER");
+				label.setBounds((WindowConfig.Width-width)/2, PlayConfig.positionY, width, PlayConfig.height);
+				add(label);
+				repaint();
+				try {
+					Thread.sleep(PlayConfig.displayTime);
+				} catch (InterruptedException e) {}
 				stopThread();
 				screen.changeJPanel(new Result(Score.getScore(), screen));
 			}
@@ -201,6 +216,9 @@ public class Play extends JPanel implements Runnable {
 				rightWallList.get(i).move();
 			} else {
 				rightWallList.remove(i);
+				if ( Score.getScore()%3 == 0 && speed >= PlayConfig.maxSpeed ) {
+					speed--;
+				}
 				Score.addScore();
 				if ( random.nextBoolean() ) {
 					rightWallList.add(new Wall("wall3"));

@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class Ranking {
 	public static int[] getTopTenRanking() throws Exception { // 全ての記録の中でトップ10を返す
 		try (
-				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
+				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dodge_wall",
 						"postgres",
 						"postgres");
 				Statement statement = connection.createStatement();
@@ -31,7 +31,7 @@ public class Ranking {
 
 	public static int getTopRanking() throws Exception { // すべての記録の中で一番高いスコアを返す
 		try (
-				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
+				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dodge_wall",
 						"postgres",
 						"postgres");
 				Statement statement = connection.createStatement();
@@ -48,7 +48,7 @@ public class Ranking {
 	}
 
 	public static void updateRanking(String userName, int score) throws Exception { // プレイ記録を記録する
-		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dodge_wall",
 				"postgres",
 				"postgres");
 		Statement statement = connection.createStatement();
