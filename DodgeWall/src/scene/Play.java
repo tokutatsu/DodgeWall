@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import config.BackgroundConfig;
 import config.BallConfig;
+import config.PlayConfig;
 import config.WallConfig;
+import config.WindowConfig;
 import process.Judge;
 import process.Score;
 import unit.Background;
@@ -20,38 +23,41 @@ import unit.Wall;
 public class Play extends JPanel implements Runnable {
 
 	// 壁をランダムに発生させるための乱数
-	private static Random random = new Random();
+	private Random random = new Random();
 	// 言わずもがなスレッド
 	private volatile Thread thread = null;
 	// 画面が切り替わるスピード
-	// speedの値が大きいほど遅くなる
-	private static int speed;
+	// sleepTimeの値が大きいほど遅くなる
+	private int sleepTime;
 	// 背景
 	// 追加したり削除したりがしやすいためArrayListを採用
-	private static ArrayList<Background> leftBackgroundList = new ArrayList<Background>();
-	private static ArrayList<Background> rightBackgroundList = new ArrayList<Background>();
+	private ArrayList<Background> leftBackgroundList = new ArrayList<Background>();
+	private ArrayList<Background> rightBackgroundList = new ArrayList<Background>();
 	// レーン
-	private static Lane back = new Lane("back");
-	private static Lane lane1 = new Lane("lane1");
-	private static Lane lane2 = new Lane("lane2");
-	private static Lane lane3 = new Lane("lane3");
-	private static Lane lane4 = new Lane("lane4");
+	private Lane back = new Lane("back");
+	private Lane lane1 = new Lane("lane1");
+	private Lane lane2 = new Lane("lane2");
+	private Lane lane3 = new Lane("lane3");
+	private Lane lane4 = new Lane("lane4");
 	// 壁
 	// leftWallは左から2番目，rightWallは左から3番目に現れる壁
-	private static ArrayList<Wall> leftWallList = new ArrayList<Wall>();
-	private static ArrayList<Wall> rightWallList = new ArrayList<Wall>();
+	private ArrayList<Wall> leftWallList = new ArrayList<Wall>();
+	private ArrayList<Wall> rightWallList = new ArrayList<Wall>();
 	// ボール
 	// leftBall -> 左，rightBall -> 右
-	private static Ball leftBall = new Ball("leftBall");
-	private static Ball rightBall = new Ball("rightBall");
+	private Ball leftBall = new Ball("leftBall");
+	private Ball rightBall = new Ball("rightBall");
 	// 一時変数
-	private static int i;
+	private int i;
 	private Screen screen;
+
+	// ゲームオーバーのラベル
+	private JLabel gameOverLabel = new JLabel("GAME OVER");
 
 	//コンストラクタ
 	public Play(Screen screen) {
 		this.screen = screen;
-		speed = 30;
+		sleepTime = PlayConfig.maxSleepTime;
 		JButton startBtn = new JButton("start");
 		startBtn.addActionListener(e -> startThread());
 		JButton stopBtn = new JButton("stop");
@@ -91,18 +97,18 @@ public class Play extends JPanel implements Runnable {
 		lane4.draw(g);
 		// 描画の重なりの関係上逆順
 		for ( i = leftWallList.size()-1; i >= 0 && leftWallList.get(i).getButtomLeft() < BallConfig.yBall+BallConfig.size; i-- ) {
-				leftWallList.get(i).draw(g);
+			leftWallList.get(i).draw(g);
 		}
 		leftBall.draw(g);
 		for ( ; i >= 0; i-- ) {
-				leftWallList.get(i).draw(g);
+			leftWallList.get(i).draw(g);
 		}
 		for ( i = rightWallList.size()-1; i >= 0 && rightWallList.get(i).getButtomLeft() < BallConfig.yBall+BallConfig.size; i-- ) {
-				rightWallList.get(i).draw(g);
+			rightWallList.get(i).draw(g);
 		}
 		rightBall.draw(g);
 		for ( ; i >= 0; i-- ) {
-				rightWallList.get(i).draw(g);
+			rightWallList.get(i).draw(g);
 		}
 
 		// キー操作を有効にするために必要
@@ -117,12 +123,20 @@ public class Play extends JPanel implements Runnable {
 			// オブジェクトたちを動かす
 			move();
 			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
+				gameOverLabel.setFont(PlayConfig.font);
+				int width = gameOverLabel.getFontMetrics(PlayConfig.font).stringWidth("GAME OVER");
+				gameOverLabel.setBounds((WindowConfig.Width-width)/2, PlayConfig.positionY, width, PlayConfig.height);
+				add(gameOverLabel);
+				repaint();
+				try {
+					Thread.sleep(PlayConfig.displayTime);
+				} catch (InterruptedException e) {}
 				stopThread();
 				screen.changeJPanel(new Result(Score.getScore(), screen));
 			}
 			repaint();
 			try {
-				Thread.sleep(speed);
+				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {}
 		}
 	}
@@ -201,6 +215,9 @@ public class Play extends JPanel implements Runnable {
 				rightWallList.get(i).move();
 			} else {
 				rightWallList.remove(i);
+				if ( Score.getScore()%3 == 0 && sleepTime >= PlayConfig.minSleepTime ) {
+					sleepTime--;
+				}
 				Score.addScore();
 				if ( random.nextBoolean() ) {
 					rightWallList.add(new Wall("wall3"));

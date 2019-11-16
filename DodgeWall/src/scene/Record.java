@@ -12,8 +12,8 @@ import config.WindowConfig;
 
 public class Record extends JPanel implements ActionListener {
 
-	private static JButton titleButton;
-	private static JButton exitButton;
+	private JButton titleButton;
+	private JButton exitButton;
 
 	public Record() {
 		setLayout(null);
