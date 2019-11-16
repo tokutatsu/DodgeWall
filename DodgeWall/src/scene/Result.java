@@ -33,6 +33,7 @@ public class Result extends JPanel implements ActionListener {
 
 		// ユーザ名入力用のTextField
 		inputUserName = new JTextField(userName);
+		inputUserName.setBounds(ResultConfig.inputUserNamePoint.x, ResultConfig.inputUserNamePoint.y, ResultConfig.inputUserNameWidth, ResultConfig.inputUserNameHeight);
 		this.add(inputUserName);
 
 		// titleボタン
@@ -69,9 +70,6 @@ public class Result extends JPanel implements ActionListener {
 		g.setFont(ResultConfig.scoreFont);
 		scoreMessageLength = g.getFontMetrics().stringWidth(scoreMessage);
 		g.drawString(scoreMessage, WindowConfig.Width/2-scoreMessageLength/2, ResultConfig.scoreY);
-
-		// inputUserNameTextFieldの描画
-		inputUserName.setBounds(ResultConfig.inputUserNamePoint.x, ResultConfig.inputUserNamePoint.y, ResultConfig.inputUserNameWidth, ResultConfig.inputUserNameHeight);
 
 	}
 
