@@ -17,9 +17,10 @@ public class ResultConfig {
 	public static final int highScoreY = 150;
 
 	// テキストフィールド
-	public static final int inputUserNameY = 200;
 	public static final int inputUserNameHeight = 40;
 	public static final int inputUserNameWidth = 200;
+	public static final int inputUserNameX = WindowConfig.Width/2 - inputUserNameWidth/2;
+	public static final int inputUserNameY = 200;
 
 	// titleボタン
 	public static final Point titleButtonPoint = new Point(40, 270);

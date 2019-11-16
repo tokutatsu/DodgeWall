@@ -13,9 +13,9 @@ import config.WindowConfig;
 
 public class Result extends JPanel implements ActionListener {
 
-	private static int score;
+	private int score;
 	private static int scoreMessageLength;
-	private static String userName;
+	private String userName;
 	private static String scoreMessage;
 	private static JTextField inputUserName;
 	private static JButton titleButton;
@@ -23,15 +23,15 @@ public class Result extends JPanel implements ActionListener {
 	private static JButton rankingButton;
 	private static JButton exitButton;
 
-	public Result(int Score) {
+	public Result(int score) {
 		setLayout(null);
-		userName = "Guest Name";
-		score = Score;
+		this.userName = "Guest Name";
+		this.score = score;
 
-		// Text
-		scoreMessage = "Score: " + score;
+		// scoreの表示文
+		scoreMessage = "Score: " + this.score;
 
-		// TextField
+		// ユーザ名入力用のTextField
 		inputUserName = new JTextField(userName);
 		this.add(inputUserName);
 
@@ -64,20 +64,14 @@ public class Result extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		// score
+		// scoreMessageの描画
 		g.setColor(ResultConfig.fontColor);
 		g.setFont(ResultConfig.scoreFont);
 		scoreMessageLength = g.getFontMetrics().stringWidth(scoreMessage);
 		g.drawString(scoreMessage, WindowConfig.Width/2-scoreMessageLength/2, ResultConfig.scoreY);
 
-		// inputUserName
-		inputUserName.setBounds(WindowConfig.Width/2-ResultConfig.inputUserNameWidth/2, ResultConfig.inputUserNameY, ResultConfig.inputUserNameWidth, ResultConfig.inputUserNameHeight);
-
-		// Button
-		titleButton.setBounds(ResultConfig.titleButtonPoint.x, ResultConfig.titleButtonPoint.y, ResultConfig.titleButtonWidth, ResultConfig.titleButtonHeight);
-		retryButton.setBounds(ResultConfig.retryButtonPoint.x, ResultConfig.retryButtonPoint.y, ResultConfig.retryButtonWidth, ResultConfig.retryButtonHeight);
-		rankingButton.setBounds(ResultConfig.rankingButtonPoint.x, ResultConfig.rankingButtonPoint.y, ResultConfig.rankingButtonWidth, ResultConfig.rankingButtonHeight);
-		exitButton.setBounds(ResultConfig.exitButtonPoint.x, ResultConfig.exitButtonPoint.y, ResultConfig.exitButtonWidth, ResultConfig.exitButtonHeight);
+		// inputUserNameTextFieldの描画
+		inputUserName.setBounds(ResultConfig.inputUserNameX, ResultConfig.inputUserNameY, ResultConfig.inputUserNameWidth, ResultConfig.inputUserNameHeight);
 
 	}
 
