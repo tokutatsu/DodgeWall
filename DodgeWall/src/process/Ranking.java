@@ -17,7 +17,7 @@ public class Ranking {
 		HashMap<String, String> record  = new HashMap<String, String>();
 		while ( resultSet.next() ) {
 			record.put("userName", resultSet.getString("name"));
-			record.put("score", resultSet.getString("score"));
+			record.put("score", Integer.toString(resultSet.getInt("score")));
 			recordList.add(record);
 		}
 		return recordList;
