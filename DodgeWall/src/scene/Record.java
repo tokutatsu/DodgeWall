@@ -69,7 +69,6 @@ public class Record extends JPanel implements ActionListener {
 		g.setFont(RecordConfig.recordFont);
 		FontMetrics recordFontMetrics = g.getFontMetrics();
 		for ( int i = 0; i < recordList.size(); i++ ) {
-			String record = Integer.toString(i+1) + ". " + recordList.get(i).get("userName") + " " + recordList.get(i).get("score");
 			g.drawString(Integer.toString(i+1), RecordConfig.rankX-Integer.toString(i+1).length() * g.getFontMetrics().charWidth('1'), RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
 			g.drawString(". ", RecordConfig.userNameX-g.getFontMetrics().stringWidth(". "), RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
 			g.drawString(recordList.get(i).get("userName"), RecordConfig.userNameX, RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
