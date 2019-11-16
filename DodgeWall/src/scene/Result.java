@@ -71,7 +71,7 @@ public class Result extends JPanel implements ActionListener {
 		g.drawString(scoreMessage, WindowConfig.Width/2-scoreMessageLength/2, ResultConfig.scoreY);
 
 		// inputUserNameTextFieldの描画
-		inputUserName.setBounds(ResultConfig.inputUserNameX, ResultConfig.inputUserNameY, ResultConfig.inputUserNameWidth, ResultConfig.inputUserNameHeight);
+		inputUserName.setBounds(ResultConfig.inputUserNamePoint.x, ResultConfig.inputUserNamePoint.y, ResultConfig.inputUserNameWidth, ResultConfig.inputUserNameHeight);
 
 	}
 
