@@ -15,8 +15,9 @@ public class Record extends JPanel implements ActionListener {
 	private JButton titleButton;
 	private JButton exitButton;
 
-	public Record() {
+	public Record(Screen screen) {
 		setLayout(null);
+		this.screen = screen;
 
 		// titleボタン
 		titleButton = new JButton("title");
