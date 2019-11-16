@@ -26,7 +26,7 @@ public class Title extends JPanel implements ActionListener {
 		startButton.setBounds(TitleConfig.startButtonPoint.x, TitleConfig.startButtonPoint.y, TitleConfig.startButtonWidth, TitleConfig.startButtonHeight);
 		this.add(startButton);
 		// rankingボタン
-		rankingButton = new JButton("ranaking");
+		rankingButton = new JButton("ranking");
 		rankingButton.addActionListener(this);
 		rankingButton.setBounds(TitleConfig.rankingButtonPoint.x, TitleConfig.rankingButtonPoint.y, TitleConfig.rankingButtonWidth, TitleConfig.rankingButtonHeight);
 		this.add(rankingButton);
@@ -39,16 +39,13 @@ public class Title extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e){
 		switch ( e.getActionCommand() ) {
-		case "start": {
+		case "start":
 			break;
-		}
-		case "ranking": {
+		case "ranking":
 			break;
-		}
-		case "exit": {
+		case "exit":
 			System.exit(0);
 			break;
-		}
 		}
 	}
 

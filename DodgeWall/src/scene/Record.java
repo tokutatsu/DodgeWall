@@ -32,13 +32,11 @@ public class Record extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e){
 		switch ( e.getActionCommand() ) {
-		case "title": {
+		case "title":
 			break;
-		}
-		case "exit": {
+		case "exit":
 			System.exit(0);
 			break;
-		}
 		}
 	}
 

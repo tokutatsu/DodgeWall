@@ -58,6 +58,8 @@ public class Play extends JPanel implements Runnable {
 		add(stopBtn);
 		addKeyListener(leftBall);
 		addKeyListener(rightBall);
+		init();
+		Score.init();
 		startThread();
 	}
 
@@ -109,8 +111,6 @@ public class Play extends JPanel implements Runnable {
 	public void run() {
 		Thread thisThread = Thread.currentThread();
 		// 背景と壁の初期化
-		init();
-		Score.init();
 		while (thread == thisThread) {
 			// オブジェクトたちを動かす
 			move();
