@@ -11,6 +11,8 @@ public class Main {
 			JFrame frame = new JFrame("DodgeWall");
 			Play play = new Play();
 			frame.add(play);
+//			Title title = new Title(TitleConfig.usernameInit);
+//			frame.add(title);
 			frame.pack();
 			frame.setVisible(true);
 			frame.setSize(WindowConfig.Width, WindowConfig.Height);
