@@ -8,7 +8,7 @@ public class Score {
 		score = 0;
 	}
 
-	public static void count() {
+	public static void addScore() {
 		score += 1;
 	}
 
