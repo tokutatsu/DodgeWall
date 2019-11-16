@@ -1,5 +1,6 @@
 package scene;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,17 +15,19 @@ public class Record extends JPanel implements ActionListener {
 
 	private JButton titleButton;
 	private JButton exitButton;
+	private Screen screen;
 
-	public Record() {
+	public Record(Screen screen) {
 		setLayout(null);
+		this.screen = screen;
 
 		// titleボタン
-		titleButton = new JButton("title");
+		titleButton = new JButton("Title");
 		titleButton.addActionListener(this);
 		titleButton.setBounds(RecordConfig.titleButtonPoint.x, RecordConfig.titleButtonPoint.y, RecordConfig.titleButtonWidth, RecordConfig.titleButtonHeight);
 		this.add(titleButton);
 		// exitボタン
-		exitButton = new JButton("exit");
+		exitButton = new JButton("Exit");
 		exitButton.addActionListener(this);
 		exitButton.setBounds(RecordConfig.exitButtonPoint.x, RecordConfig.exitButtonPoint.y, RecordConfig.exitButtonWidth, RecordConfig.exitButtonHeight);
 		this.add(exitButton);
@@ -33,6 +36,7 @@ public class Record extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e){
 		switch ( e.getActionCommand() ) {
 		case "title":
+			screen.changeJPanel(new Title(screen));
 			break;
 		case "exit":
 			System.exit(0);
@@ -43,12 +47,21 @@ public class Record extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		String head = new String("Ranking");
 		String score = new String("1. 12345");
-		// title
-		g.setColor(RecordConfig.rankingColor);
-		g.setFont(RecordConfig.rankingFont);
-		for ( int i = 0; i < 0; i++ ) {
-			g.drawString(score, (WindowConfig.Width-g.getFontMetrics().stringWidth(score)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.rankingY);
+
+		// headの表示
+		g.setColor(RecordConfig.headColor);
+		g.setFont(RecordConfig.headFont);
+		FontMetrics headFontMetrics = g.getFontMetrics();
+		g.drawString(head, (WindowConfig.Width-headFontMetrics.stringWidth(head)-headFontMetrics.charWidth('l'))/2, RecordConfig.headY);
+
+		// ランキングの表示
+		g.setColor(RecordConfig.recordColor);
+		g.setFont(RecordConfig.recordFont);
+		FontMetrics recordFontMetrics = g.getFontMetrics();
+		for ( int i = 0; i < 10; i++ ) {
+			g.drawString(score, (WindowConfig.Width-recordFontMetrics.stringWidth(score)-recordFontMetrics.charWidth('l'))/2, RecordConfig.recordY+i*(recordFontMetrics.getHeight()+10));
 		}
 	}
 

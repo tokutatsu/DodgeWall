@@ -22,17 +22,17 @@ public class Title extends JPanel implements ActionListener {
 		this.screen = screen;
 
 		// startボタン
-		startButton = new JButton("start");
+		startButton = new JButton("Start");
 		startButton.addActionListener(this);
 		startButton.setBounds(TitleConfig.startButtonPoint.x, TitleConfig.startButtonPoint.y, TitleConfig.startButtonWidth, TitleConfig.startButtonHeight);
 		this.add(startButton);
 		// rankingボタン
-		rankingButton = new JButton("ranking");
+		rankingButton = new JButton("Ranking");
 		rankingButton.addActionListener(this);
 		rankingButton.setBounds(TitleConfig.rankingButtonPoint.x, TitleConfig.rankingButtonPoint.y, TitleConfig.rankingButtonWidth, TitleConfig.rankingButtonHeight);
 		this.add(rankingButton);
 		// exitボタン
-		exitButton = new JButton("exit");
+		exitButton = new JButton("Exit");
 		exitButton.addActionListener(this);
 		exitButton.setBounds(TitleConfig.exitButtonPoint.x, TitleConfig.exitButtonPoint.y, TitleConfig.exitButtonWidth, TitleConfig.exitButtonHeight);
 		this.add(exitButton);
@@ -44,7 +44,7 @@ public class Title extends JPanel implements ActionListener {
 			screen.changeJPanel(new Play(screen));
 			break;
 		case "ranking":
-			screen.changeJPanel(new Record());
+			screen.changeJPanel(new Record(screen));
 			break;
 		case "exit":
 			System.exit(0);
