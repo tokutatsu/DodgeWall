@@ -35,10 +35,10 @@ public class Record extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e){
 		switch ( e.getActionCommand() ) {
-		case "title":
+		case "Title":
 			screen.changeJPanel(new Title(screen));
 			break;
-		case "exit":
+		case "Exit":
 			System.exit(0);
 			break;
 		}

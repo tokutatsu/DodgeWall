@@ -40,13 +40,13 @@ public class Title extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e){
 		switch ( e.getActionCommand() ) {
-		case "start":
+		case "Start":
 			screen.changeJPanel(new Play(screen));
 			break;
-		case "ranking":
+		case "Ranking":
 			screen.changeJPanel(new Record(screen));
 			break;
-		case "exit":
+		case "Exit":
 			System.exit(0);
 			break;
 		}

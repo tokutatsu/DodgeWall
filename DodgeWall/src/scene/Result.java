@@ -96,6 +96,8 @@ public class Result extends JPanel implements ActionListener {
 				screen.changeJPanel(new Result(score, screen));
 			}
 		case "Ranking":
+			screen.changeJPanel(new Record(screen));
+			break;
 		case "Exit":
 			try {
 				Ranking.updateRanking(userName, score);
