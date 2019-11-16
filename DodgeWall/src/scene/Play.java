@@ -116,7 +116,6 @@ public class Play extends JPanel implements Runnable {
 			move();
 			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
 				stopThread();
-				System.out.println(Score.getScore());
 			}
 			repaint();
 			try {
@@ -199,7 +198,7 @@ public class Play extends JPanel implements Runnable {
 				rightWallList.get(i).move();
 			} else {
 				rightWallList.remove(i);
-				Score.count();
+				Score.addScore();
 				if ( random.nextBoolean() ) {
 					rightWallList.add(new Wall("wall3"));
 				} else {
