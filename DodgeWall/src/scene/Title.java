@@ -12,7 +12,6 @@ import config.WindowConfig;
 
 public class Title extends JPanel implements ActionListener {
 
-
 	private JButton startButton;
 	private JButton rankingButton;
 	private JButton exitButton;
@@ -42,7 +41,7 @@ public class Title extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e){
 		switch ( e.getActionCommand() ) {
 		case "start":
-			screen.changeJPanel(new Play());
+			screen.changeJPanel(new Play(screen));
 			break;
 		case "ranking":
 			screen.changeJPanel(new Record());

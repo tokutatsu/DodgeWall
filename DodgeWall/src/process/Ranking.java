@@ -29,7 +29,7 @@ public class Ranking {
 		}
 	}
 
-	public static int getTopRanking() throws Exception { //すべての記録の中で一番高いスコアを返す
+	public static int getTopRanking() throws Exception { // すべての記録の中で一番高いスコアを返す
 		try (
 				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
 						"postgres",
@@ -47,20 +47,12 @@ public class Ranking {
 		}
 	}
 
-	public static boolean updateRanking(int score) throws Exception { //名無しのプレイヤーのプレイ記録を記録する
-		try (
-				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
-						"postgres",
-						"postgres");
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery(
-						"insert into ranking (name, score) values ('Guest User', " + score + ")"
-						);
-				){
-			return true;
-		} catch ( SQLException e ) {
-			return false;
-		}
+	public static void updateRanking(String userName, int score) throws Exception { // プレイ記録を記録する
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DodgeWall",
+				"postgres",
+				"postgres");
+		Statement statement = connection.createStatement();
+		statement.executeUpdate("insert into ranking (name, score) values ('" + userName + "', " + score + ")");
 	}
 
 }

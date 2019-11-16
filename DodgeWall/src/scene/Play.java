@@ -46,9 +46,11 @@ public class Play extends JPanel implements Runnable {
 	private static Ball rightBall = new Ball("rightBall");
 	// 一時変数
 	private static int i;
+	private Screen screen;
 
 	//コンストラクタ
-	public Play() {
+	public Play(Screen screen) {
+		this.screen = screen;
 		speed = 30;
 		JButton startBtn = new JButton("start");
 		startBtn.addActionListener(e -> startThread());
@@ -116,6 +118,7 @@ public class Play extends JPanel implements Runnable {
 			move();
 			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
 				stopThread();
+				screen.changeJPanel(new Result(Score.getScore(), screen));
 			}
 			repaint();
 			try {
