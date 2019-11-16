@@ -57,7 +57,6 @@ public class Play extends JPanel implements Runnable {
 	//コンストラクタ
 	public Play(Screen screen) {
 		this.screen = screen;
-//		setLayout(null);
 		speed = PlayConfig.minSpeed;
 		JButton startBtn = new JButton("start");
 		startBtn.addActionListener(e -> startThread());
