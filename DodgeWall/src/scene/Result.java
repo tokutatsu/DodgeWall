@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import config.ResultConfig;
 import config.WindowConfig;
+import process.Ranking;
 
 public class Result extends JPanel implements ActionListener {
 
@@ -22,11 +23,13 @@ public class Result extends JPanel implements ActionListener {
 	private static JButton retryButton;
 	private static JButton rankingButton;
 	private static JButton exitButton;
+	private Screen screen;
 
-	public Result(int score) {
+	public Result(int score, Screen screen) {
 		setLayout(null);
 		this.userName = "Guest Name";
 		this.score = score;
+		this.screen = screen;
 
 		// scoreの表示文
 		scoreMessage = "Score: " + this.score;
@@ -75,7 +78,33 @@ public class Result extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
+		switch ( e.getActionCommand() ) {
+		case "Title":
+			try {
+				Ranking.updateRanking(userName, score);
+				screen.changeJPanel(new Title(screen));
+				break;
+			} catch (Exception e1) {
+				screen.changeJPanel(new Result(score, screen));
+			}
+		case "Retry":
+			try {
+				Ranking.updateRanking(userName, score);
+				screen.changeJPanel(new Play(screen));
+				break;
+			} catch (Exception e1) {
+				screen.changeJPanel(new Result(score, screen));
+			}
+		case "Ranking":
+		case "Exit":
+			try {
+				Ranking.updateRanking(userName, score);
+				System.exit(0);
+				break;
+			} catch (Exception e1) {
+				screen.changeJPanel(new Result(score, screen));
+			}
+		}
 
 	}
 }
