@@ -78,13 +78,14 @@ public class Result extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		userName = inputUserName.getText();
 		switch ( e.getActionCommand() ) {
 		case "Title":
 			try {
 				Ranking.updateRanking(userName, score);
 				screen.changeJPanel(new Title(screen));
 				break;
-			} catch (Exception e1) {
+			} catch ( Exception e1 ) {
 				screen.changeJPanel(new Result(score, screen));
 			}
 		case "Retry":
@@ -92,18 +93,23 @@ public class Result extends JPanel implements ActionListener {
 				Ranking.updateRanking(userName, score);
 				screen.changeJPanel(new Play(screen));
 				break;
-			} catch (Exception e1) {
+			} catch ( Exception e1 ) {
 				screen.changeJPanel(new Result(score, screen));
 			}
 		case "Ranking":
-			screen.changeJPanel(new Record(screen));
-			break;
+			try {
+				Ranking.updateRanking(userName, score);
+				screen.changeJPanel(new Record(screen));
+				break;
+			} catch ( Exception e1 ) {
+				screen.changeJPanel(new Result(score, screen));
+			}
 		case "Exit":
 			try {
 				Ranking.updateRanking(userName, score);
 				System.exit(0);
 				break;
-			} catch (Exception e1) {
+			} catch ( Exception e1 ) {
 				screen.changeJPanel(new Result(score, screen));
 			}
 		}
