@@ -77,36 +77,159 @@ package unit {
 
 package config {
     class BackgroundConfig {
+        - x: int[]
+        - y: int[]
 
-    }
-    
-    class BallConfig {
+        + background1: Polygon
+        + background2: Polygon
 
-    }
+        + upper: int
+        + right: int
+        + left: int
 
-    class LaneConfig {
+        + upperIncreaseBackground1: Point
+        + rightIncreaseBackground1: Point
+        + leftIncreaseBackground1: Point
 
+        + upperIncreaseBackground: Point
+        + rightIncreaseBackground: Point
+        + leftIncreaseBackground: Point
+
+        + frame: int
+
+        + alpha: int
+        + maxAlpha: int
+        + alphaIncrease: int
+        + color: Color
+
+        + pieces: int
     }
 
     class WallConfig {
+        - heightSize: int
+        - xWall1: int[]
+        - xWall2: int[]
+        - xWall3: int[]
+        - xWall4: int[]
+        - yWall: int[]
 
+        + upperRight: int
+        + buttomRight: int
+        + buttomLeft: int
+        + upperLeft: int
+
+        + xRightIncreaseWall1: int
+        + xLeftIncreaseWall1: int
+        + xRightIncreaseWall2: int
+        + xLeftIncreaseWall2: int
+        + xRightIncreaseWall3: int
+        + xLeftIncreaseWall3: int
+        + xRightIncreaseWall4: int
+        + xLeftIncreaseWall4: int
+        + yUpperIncrease: int
+        + yBottomIncrease: int
+
+        + wall1: Polygon
+        + wall2: Polygon
+        + wall3: Polygon
+        + wall4: Polygon
+
+        + frame: int
+        + alpha: int
+        + maxAlpha: int
+        + alphaIncrease: int
+        + color: Color
+        + pieces: int
     }
 
-    class PlayConfig {
+    class LaneConfig {
+        - upperWidth: int
+        - bottomWidth: int
+        - xLane1: int[]
+        - xLane2: int[]
+        - xLane3: int[]
+        - xLane4: int[]
+        - yLane: int[]
+        - xBack: int[]
+        - yBack: int[]
 
+        + border: int 
+        + lane1: Polygon
+        + lane2: Polygon
+        + lane3: Polygon
+        + lane4: Polygon
+        + back: Polygon
+        + laneColor: Color
+        + backColor: Color
     }
 
-    class RecordConfig {
+    class BallConfig {
+        + int size = WindowConfig.Width/5;
 
-    }
+        + color: Color
 
-    class ResultConfig {
+        + xBall: int
+        + yBall: int
 
+        + moveDistance: int
+
+        + ball1: Point
+        + ball2: Point
+        + ball3: Point
+        + ball4: Point
     }
 
     class WindowConfig {
-        height
-        width
+        + Height: int
+        + Width: int
+
+        + headY: int
+        + headFont: Font
+        + headColor: Color
+
+        + buttonHeight: int
+        + buttonWidth: int
+        + leftButtonPoint: Point 
+        + rightButtonPoint: Point
+
+        + titleButtonPoint: Point
+        + titleButtonWidth: int
+        + titleButtonHeight: int
+
+        + exitButtonPoint: Point
+        + exitButtonWidth: int
+        + exitButtonHeight: int
+    }
+
+    class PlayConfig {
+        + maxSleepTime: int
+        + minSleepTime: int
+        + displayTime: int
+        + font: Font
+        + positionY: int
+        + height: int
+    }
+
+    class RecordConfig {
+        + recordY: int
+        + distance: int
+        + recordFont: Font
+        + recordColor: Color
+
+        + rankX: int
+        + userNameX: int
+        + scoreX: int
+    }
+
+    class ResultConfig {
+        + fontColor: Color
+
+        + highScoreFont: Font
+        + highScoreY: int
+
+        + inputUserNameHeight: int
+        + inputUserNameWidth: int
+        + inputUserNamePoint: Point
     }
 }
 
@@ -189,12 +312,6 @@ package scene {
 }
 
 package process {
-    class Judge {
-        + hitJudge(leftBall: Ball, leftWallList: ArrayList<Wall>, rightBall: Ball, rightWallList: ArrayList<Wall>): boolean
-        - checkAllWall(ball: Ball, wallList: ArrayList<Wall>): boolean
-        - checkEachWall(ball: Ball, wall: Wall): boolean
-    }
-
     class Score {
         - score: int
 
@@ -206,6 +323,12 @@ package process {
     class Ranking {
         + getTopTenRanking(): ArrayList<HashMap<String, String>>
         + updateRanking(userName: String, score: int): void
+    }
+
+    class Judge {
+        + hitJudge(leftBall: Ball, leftWallList: ArrayList<Wall>, rightBall: Ball, rightWallList: ArrayList<Wall>): boolean
+        - checkAllWall(ball: Ball, wallList: ArrayList<Wall>): boolean
+        - checkEachWall(ball: Ball, wall: Wall): boolean
     }
 }
 
