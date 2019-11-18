@@ -163,10 +163,13 @@ public class Play extends JPanel implements Runnable {
 
 	// 各オブジェクトをmoveメソッドで動かす
 	private void move() {
-		// 左の背景
+		// 背景
 		// 背景を動かす
 		for ( int i = 0; i < leftBackgroundList.size(); i++ ) {
 			leftBackgroundList.get(i).move();
+		}
+		for ( int i = 0; i < rightBackgroundList.size(); i++ ) {
+			rightBackgroundList.get(i).move();
 		}
 		// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
 		if ( leftBackgroundList.size() < BackgroundConfig.pieces && leftBackgroundList.get(leftBackgroundList.size()-1).nextTrigger() ) {
@@ -177,22 +180,21 @@ public class Play extends JPanel implements Runnable {
 			leftBackgroundList.remove(0);
 			leftBackgroundList.add(new Background("leftBackground"));
 		}
-		// 右の背景
-		// 背景を動かす
-		for ( int i = 0; i < rightBackgroundList.size(); i++ ) {
-			rightBackgroundList.get(i).move();
+		if ( rightBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).nextTrigger() ) {
+			rightBackgroundList.add(new Background("rightBackground"));
 		}
-		// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
-		if ( righttBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).nextTrigger() ) {
-			rightBackgroundList.add(new Background("righBackground"));
-		}
-		// 背景が画面内になければその背景をArrayListから削除する．
 		if ( !rightBackgroundList.get(0).isVisible() ) {
 			rightBackgroundList.remove(0);
-			rightBackgroundList.add(new Background("righBackground"));
+			rightBackgroundList.add(new Background("rightBackground"));
 		}
-		// 左の壁
-		if ( leftWallist.size() < WallConfig.pieces && WallList.get(WallList.size()-1).nextTrigger() ) {
+		// 壁
+		for ( int i = 0; i < leftWallList.size(); i++ ) {
+			leftWallList.get(i).move();
+		}
+		for ( int i = 0; i < rightWallList.size(); i++ ) {
+			rightWallList.get(i).move();
+		}
+		if ( leftWallList.size() < WallConfig.pieces && leftWallList.get(leftWallList.size()-1).nextTrigger() ) {
 			if ( random.nextBoolean() ) {
 				leftWallList.add(new Wall("wall2"));
 			} else {
@@ -207,11 +209,7 @@ public class Play extends JPanel implements Runnable {
 				leftWallList.add(new Wall("wall1"));
 			}
 		}
-		for ( int i = 0; i < leftWallList.size(); i++ ) {
-			leftWallList.move();
-		}
-		// 右の壁
-		if ( rightWallist.size() < WallConfig.pieces && WallList.get(WallList.size()-1).nextTrigger() ) {
+		if ( rightWallList.size() < WallConfig.pieces && rightWallList.get(rightWallList.size()-1).nextTrigger() ) {
 			if ( random.nextBoolean() ) {
 				rightWallList.add(new Wall("wall3"));
 			} else {
@@ -229,9 +227,6 @@ public class Play extends JPanel implements Runnable {
 				sleepTime--;
 			}
 			Score.addScore();
-		}
-		for ( int i = 0; i < rightWallList.size(); i++ ) {
-			rightWallList.move();
 		}
 	}
 
