@@ -18,6 +18,7 @@ public class RecordConfig {
 
 	// エラーが出たとき
 	public static final Color errorColor = new Color(0, 0, 0) ;
-	public static final Font errorFont = new Font("メイリオ", Font.BOLD, 30);
-	public static final int errorY = 350;
+	public static final Font errorFont = new Font("メイリオ", Font.BOLD, 18);
+	public static final int errorY = 400;
+	public static final int lineSpace = 25;
 }

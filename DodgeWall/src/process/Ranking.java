@@ -11,6 +11,8 @@ import java.util.HashMap;
 public class Ranking {
 	public static ArrayList<HashMap<String, String>> getTopTenRanking() throws Exception { // 全ての記録の中でトップ10を返す
 		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dodge_wall","postgres","postgres");
+		// データベースのエラー用
+//		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dd","postgres","postgres");
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("select name, score from ranking order by score desc, id desc offset 0 limit 10");
 		ArrayList<HashMap<String, String>> recordList = new ArrayList<HashMap<String, String>>();

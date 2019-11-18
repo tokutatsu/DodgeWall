@@ -63,10 +63,14 @@ public class Record extends JPanel implements ActionListener {
 		try {
 			recordList = Ranking.getTopTenRanking();
 		} catch (Exception e) {
-			String errorMessage = "no data";
+//			String errorMessage1 = "データベースに接続できませんでした。";
+			String errorMessage1 = "Could not connect tothe datebase.";
+//			String errorMessage2 = "データベースの設定を確認してください。";
+			String errorMessage2 = "Please check the database settings.";
 			g.setColor(RecordConfig.errorColor);
 			g.setFont(RecordConfig.errorFont);
-			g.drawString(errorMessage, (WindowConfig.Width-g.getFontMetrics().stringWidth(errorMessage)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.errorY);
+			g.drawString(errorMessage1, (WindowConfig.Width-g.getFontMetrics().stringWidth(errorMessage1)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.errorY);
+			g.drawString(errorMessage2, (WindowConfig.Width-g.getFontMetrics().stringWidth(errorMessage2)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.errorY+RecordConfig.lineSpace);
 			return;
 		}
 
