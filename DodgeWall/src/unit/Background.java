@@ -67,7 +67,7 @@ public class Background extends Unit {
 		return false;
 	}
 
-	public boolean nextTrigger() {
+	public boolean shouldCreateBackground() {
 		if (moveCount == BackgroundConfig.frame/BackgroundConfig.pieces) {
 			return true;
 		}

@@ -97,7 +97,7 @@ public class Wall extends Unit {
 		return false;
 	}
 
-	public boolean nextTrigger() {
+	public boolean shouldCreateWall() {
 		if (moveCount == WallConfig.frame/WallConfig.pieces) {
 			return true;
 		}
