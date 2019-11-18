@@ -7,14 +7,14 @@ import java.awt.Point;
 public class TitleConfig {
 
 	// title
-	public static final int titleY = 200;
+	public static final int titleY = WindowConfig.headY;
 	public static final String titleName = new String("DODGE WALL");
-	public static final Font titleFont = new Font("メイリオ", Font.BOLD, 50);
+	public static final Font titleFont = new Font("メイリオ", Font.BOLD, WindowConfig.headSize);
 	public static final Color titleColor = new Color(0, 0, 0);
 
 	// startボタン
-	public static final int startButtonWidth = 120;
-	public static final int startButtonHeight = 30;
+	public static final int startButtonWidth = WindowConfig.buttonWidthSize;
+	public static final int startButtonHeight = WindowConfig.buttonHeightSize;
 	public static final Point startButtonPoint = new Point((WindowConfig.Width-startButtonWidth)/2, WindowConfig.Height*3/5);
 
 	// rankingボタン

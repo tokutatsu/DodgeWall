@@ -9,32 +9,32 @@ public class ResultConfig {
 	public static final Color fontColor = new Color(0, 0, 0);
 
 	// スコアの表示
-	public static final Font scoreFont = new Font("メイリオ", Font.BOLD, 50);
-	public static final int scoreY = 120;
+	public static final Font scoreFont = new Font("メイリオ", Font.BOLD, WindowConfig.headSize);
+	public static final int scoreY = WindowConfig.headY;
 
 	// ハイスコアの表示
 	public static final Font highScoreFont = new Font("メイリオ", Font.BOLD, 25);
-	public static final int highScoreY = 150;
+	public static final int highScoreY = 230;
 
 	// テキストフィールド
 	public static final int inputUserNameHeight = 40;
 	public static final int inputUserNameWidth = 200;
-	public static final Point inputUserNamePoint = new Point(WindowConfig.Width/2 - inputUserNameWidth/2, 200);
+	public static final Point inputUserNamePoint = new Point(WindowConfig.Width/2 - inputUserNameWidth/2 -5, 300);
 
 	// titleボタン
-	public static final Point titleButtonPoint = new Point(40, 270);
-	public static final int titleButtonWidth = 100;
-	public static final int titleButtonHeight = 40;
+	public static final Point titleButtonPoint = new Point(35, 370);
+	public static final int titleButtonWidth = WindowConfig.buttonWidthSize;
+	public static final int titleButtonHeight = WindowConfig.buttonHeightSize;
 
 	// retryボタン
-	public static final Point retryButtonPoint = new Point(150, 270);
-	public static final int retryButtonWidth = 100;
-	public static final int retryButtonHeight = 40;
+	public static final Point retryButtonPoint = new Point(145, 370);
+	public static final int retryButtonWidth = WindowConfig.buttonWidthSize;
+	public static final int retryButtonHeight = WindowConfig.buttonHeightSize;
 
 	// rankingボタン
-	public static final Point rankingButtonPoint = new Point(260, 270);
-	public static final int rankingButtonWidth = 100;
-	public static final int rankingButtonHeight = 40;
+	public static final Point rankingButtonPoint = new Point(255, 370);
+	public static final int rankingButtonWidth = WindowConfig.buttonWidthSize;
+	public static final int rankingButtonHeight = WindowConfig.buttonHeightSize;
 
 	// exitボタン
 	public static final Point exitButtonPoint = new Point(300, 700);
