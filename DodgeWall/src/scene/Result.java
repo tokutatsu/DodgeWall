@@ -33,7 +33,7 @@ public class Result extends JPanel implements ActionListener {
 		this.screen = screen;
 
 		// scoreの表示文
-		scoreMessage = "Score: " + this.score;
+		scoreMessage = "SCORE: " + this.score;
 
 		// ユーザ名入力用のTextField
 		inputUserName = new JTextField(userName);
@@ -43,25 +43,25 @@ public class Result extends JPanel implements ActionListener {
 		// titleボタン
 		titleButton = new JButton("Title");
 		titleButton.addActionListener(this);
-		titleButton.setBounds(ResultConfig.titleButtonPoint.x, ResultConfig.titleButtonPoint.y, ResultConfig.titleButtonWidth, ResultConfig.titleButtonHeight);
+		titleButton.setBounds(WindowConfig.titleButtonPoint.x, WindowConfig.titleButtonPoint.y, WindowConfig.titleButtonWidth, WindowConfig.titleButtonHeight);
 		this.add(titleButton);
 
 		// retryボタン
 		retryButton = new JButton("Retry");
 		retryButton.addActionListener(this);
-		retryButton.setBounds(ResultConfig.retryButtonPoint.x, ResultConfig.retryButtonPoint.y, ResultConfig.retryButtonWidth, ResultConfig.retryButtonHeight);
+		retryButton.setBounds(WindowConfig.leftButtonPoint.x, WindowConfig.leftButtonPoint.y, WindowConfig.buttonWidth, WindowConfig.buttonHeight);
 		this.add(retryButton);
 
 		// rankingボタン
 		rankingButton = new JButton("Ranking");
 		rankingButton.addActionListener(this);
-		rankingButton.setBounds(ResultConfig.rankingButtonPoint.x, ResultConfig.rankingButtonPoint.y, ResultConfig.rankingButtonWidth, ResultConfig.rankingButtonHeight);
+		rankingButton.setBounds(WindowConfig.rightButtonPoint.x, WindowConfig.rightButtonPoint.y, WindowConfig.buttonWidth, WindowConfig.buttonHeight);
 		this.add(rankingButton);
 
 		// exitボタン
 		exitButton = new JButton("Exit");
 		exitButton.addActionListener(this);
-		exitButton.setBounds(ResultConfig.exitButtonPoint.x, ResultConfig.exitButtonPoint.y, ResultConfig.exitButtonWidth, ResultConfig.exitButtonHeight);
+		exitButton.setBounds(WindowConfig.exitButtonPoint.x, WindowConfig.exitButtonPoint.y, WindowConfig.exitButtonWidth, WindowConfig.exitButtonHeight);
 		this.add(exitButton);
 	}
 
@@ -70,10 +70,10 @@ public class Result extends JPanel implements ActionListener {
 		super.paintComponent(g);
 
 		// scoreMessageの描画
-		g.setColor(ResultConfig.fontColor);
-		g.setFont(ResultConfig.scoreFont);
+		g.setColor(WindowConfig.headColor);
+		g.setFont(WindowConfig.headFont);
 		fontMetrics = g.getFontMetrics();
-		g.drawString(scoreMessage, (WindowConfig.Width-fontMetrics.stringWidth(scoreMessage)-fontMetrics.charWidth('l'))/2, ResultConfig.scoreY);
+		g.drawString(scoreMessage, (WindowConfig.Width-fontMetrics.stringWidth(scoreMessage)-fontMetrics.charWidth('l'))/2, WindowConfig.headY);
 
 	}
 

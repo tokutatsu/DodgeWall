@@ -27,12 +27,12 @@ public class Record extends JPanel implements ActionListener {
 		// titleボタン
 		titleButton = new JButton("Title");
 		titleButton.addActionListener(this);
-		titleButton.setBounds(RecordConfig.titleButtonPoint.x, RecordConfig.titleButtonPoint.y, RecordConfig.titleButtonWidth, RecordConfig.titleButtonHeight);
+		titleButton.setBounds(WindowConfig.titleButtonPoint.x, WindowConfig.titleButtonPoint.y, WindowConfig.titleButtonWidth, WindowConfig.titleButtonHeight);
 		this.add(titleButton);
 		// exitボタン
 		exitButton = new JButton("Exit");
 		exitButton.addActionListener(this);
-		exitButton.setBounds(RecordConfig.exitButtonPoint.x, RecordConfig.exitButtonPoint.y, RecordConfig.exitButtonWidth, RecordConfig.exitButtonHeight);
+		exitButton.setBounds(WindowConfig.exitButtonPoint.x, WindowConfig.exitButtonPoint.y, WindowConfig.exitButtonWidth, WindowConfig.exitButtonHeight);
 		this.add(exitButton);
 	}
 
@@ -50,7 +50,7 @@ public class Record extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		String head = new String("Ranking");
+		String head = new String("RANKING");
 		ArrayList<HashMap<String, String>> recordList = new ArrayList<HashMap<String, String>>();
 		try {
 			recordList = Ranking.getTopTenRanking();
@@ -59,10 +59,10 @@ public class Record extends JPanel implements ActionListener {
 		}
 
 		// headの表示
-		g.setColor(RecordConfig.headColor);
-		g.setFont(RecordConfig.headFont);
+		g.setColor(WindowConfig.headColor);
+		g.setFont(WindowConfig.headFont);
 		FontMetrics headFontMetrics = g.getFontMetrics();
-		g.drawString(head, (WindowConfig.Width-headFontMetrics.stringWidth(head)-headFontMetrics.charWidth('l'))/2, RecordConfig.headY);
+		g.drawString(head, (WindowConfig.Width-headFontMetrics.stringWidth(head)-headFontMetrics.charWidth('l'))/2, WindowConfig.headY);
 
 		// ランキングの表示
 		g.setColor(RecordConfig.recordColor);

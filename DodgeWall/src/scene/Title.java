@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import config.TitleConfig;
 import config.WindowConfig;
 
 public class Title extends JPanel implements ActionListener {
@@ -24,17 +23,17 @@ public class Title extends JPanel implements ActionListener {
 		// startボタン
 		startButton = new JButton("Start");
 		startButton.addActionListener(this);
-		startButton.setBounds(TitleConfig.startButtonPoint.x, TitleConfig.startButtonPoint.y, TitleConfig.startButtonWidth, TitleConfig.startButtonHeight);
+		startButton.setBounds(WindowConfig.leftButtonPoint.x, WindowConfig.leftButtonPoint.y, WindowConfig.buttonWidth, WindowConfig.buttonHeight);
 		this.add(startButton);
 		// rankingボタン
 		rankingButton = new JButton("Ranking");
 		rankingButton.addActionListener(this);
-		rankingButton.setBounds(TitleConfig.rankingButtonPoint.x, TitleConfig.rankingButtonPoint.y, TitleConfig.rankingButtonWidth, TitleConfig.rankingButtonHeight);
+		rankingButton.setBounds(WindowConfig.rightButtonPoint.x, WindowConfig.rightButtonPoint.y, WindowConfig.buttonWidth, WindowConfig.buttonHeight);
 		this.add(rankingButton);
 		// exitボタン
 		exitButton = new JButton("Exit");
 		exitButton.addActionListener(this);
-		exitButton.setBounds(TitleConfig.exitButtonPoint.x, TitleConfig.exitButtonPoint.y, TitleConfig.exitButtonWidth, TitleConfig.exitButtonHeight);
+		exitButton.setBounds(WindowConfig.exitButtonPoint.x, WindowConfig.exitButtonPoint.y, WindowConfig.exitButtonWidth, WindowConfig.exitButtonHeight);
 		this.add(exitButton);
 	}
 
@@ -56,9 +55,10 @@ public class Title extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// title
-		g.setColor(TitleConfig.titleColor);
-		g.setFont(TitleConfig.titleFont);
-		g.drawString(TitleConfig.titleName, (WindowConfig.Width-g.getFontMetrics().stringWidth(TitleConfig.titleName)-g.getFontMetrics().charWidth('l'))/2, TitleConfig.titleY);
+		String head = "DODGE WALL";
+		g.setColor(WindowConfig.headColor);
+		g.setFont(WindowConfig.headFont);
+		g.drawString(head, (WindowConfig.Width-g.getFontMetrics().stringWidth(head)-g.getFontMetrics().charWidth('l'))/2, WindowConfig.headY);
 	}
 
 }
