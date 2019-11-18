@@ -163,73 +163,75 @@ public class Play extends JPanel implements Runnable {
 
 	// 各オブジェクトをmoveメソッドで動かす
 	private void move() {
-		int i;
-		for ( i = 0; i < leftBackgroundList.size(); i++ ) {
-			// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
-			if ( leftBackgroundList.get(i).nextTrigger() && leftBackgroundList.size() < BackgroundConfig.pieces ) {
-				leftBackgroundList.add(new Background("leftBackground"));
-				leftBackgroundList.get(i).move();
-			// 背景が画面内にあれば背景をその動かす
-			} else if ( leftBackgroundList.get(i).isVisible() ) {
-				leftBackgroundList.get(i).move();
-			// 背景が画面内になければその背景をArrayListから削除して新しい背景をArrayListに追加する．
+		// 左の背景
+		// 背景を動かす
+		for ( int i = 0; i < leftBackgroundList.size(); i++ ) {
+			leftBackgroundList.get(i).move();
+		}
+		// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
+		if ( leftBackgroundList.size() < BackgroundConfig.pieces && leftBackgroundList.get(leftBackgroundList.size()-1).nextTrigger() ) {
+			leftBackgroundList.add(new Background("leftBackground"));
+		}
+		// 背景が画面内になければその背景をArrayListから削除する．
+		if ( !leftBackgroundList.get(0).isVisible() ) {
+			leftBackgroundList.remove(0);
+			leftBackgroundList.add(new Background("leftBackground"));
+		}
+		// 右の背景
+		// 背景を動かす
+		for ( int i = 0; i < rightBackgroundList.size(); i++ ) {
+			rightBackgroundList.get(i).move();
+		}
+		// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
+		if ( righttBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).nextTrigger() ) {
+			rightBackgroundList.add(new Background("righBackground"));
+		}
+		// 背景が画面内になければその背景をArrayListから削除する．
+		if ( !rightBackgroundList.get(0).isVisible() ) {
+			rightBackgroundList.remove(0);
+			rightBackgroundList.add(new Background("righBackground"));
+		}
+		// 左の壁
+		if ( leftWallist.size() < WallConfig.pieces && WallList.get(WallList.size()-1).nextTrigger() ) {
+			if ( random.nextBoolean() ) {
+				leftWallList.add(new Wall("wall2"));
 			} else {
-				leftBackgroundList.remove(i);
-				leftBackgroundList.add(new Background("leftBackground"));
+				leftWallList.add(new Wall("wall1"));
 			}
 		}
-		for ( i = 0; i < rightBackgroundList.size(); i++ ) {
-			if ( rightBackgroundList.get(i).nextTrigger() && rightBackgroundList.size() < BackgroundConfig.pieces ) {
-				rightBackgroundList.add(new Background("rightBackground"));
-				rightBackgroundList.get(i).move();
-			} else if ( rightBackgroundList.get(i).isVisible() ) {
-				rightBackgroundList.get(i).move();
+		if ( !leftWallList.get(0).isVisible() ) {
+			leftWallList.remove(0);
+			if ( random.nextBoolean() ) {
+				leftWallList.add(new Wall("wall2"));
 			} else {
-				rightBackgroundList.remove(i);
-				rightBackgroundList.add(new Background("rightBackground"));
+				leftWallList.add(new Wall("wall1"));
 			}
 		}
-		for ( i = 0; i < leftWallList.size(); i++ ) {
-			if ( leftWallList.get(i).nextTrigger() && leftWallList.size() < WallConfig.pieces ) {
-				if ( random.nextBoolean() ) {
-					leftWallList.add(new Wall("wall2"));
-				} else {
-					leftWallList.add(new Wall("wall1"));
-				}
-				leftWallList.get(i).move();
-			} else if ( leftWallList.get(i).isVisible() ) {
-				leftWallList.get(i).move();
+		for ( int i = 0; i < leftWallList.size(); i++ ) {
+			leftWallList.move();
+		}
+		// 右の壁
+		if ( rightWallist.size() < WallConfig.pieces && WallList.get(WallList.size()-1).nextTrigger() ) {
+			if ( random.nextBoolean() ) {
+				rightWallList.add(new Wall("wall3"));
 			} else {
-				leftWallList.remove(i);
-				if ( random.nextBoolean() ) {
-					leftWallList.add(new Wall("wall2"));
-				} else {
-					leftWallList.add(new Wall("wall1"));
-				}
+				rightWallList.add(new Wall("wall4"));
 			}
 		}
-		for ( i = 0; i < rightWallList.size(); i++ ) {
-			if ( rightWallList.get(i).nextTrigger() && rightWallList.size() < WallConfig.pieces ) {
-				if ( random.nextBoolean() ) {
-					rightWallList.add(new Wall("wall3"));
-				} else {
-					rightWallList.add(new Wall("wall4"));
-				}
-				rightWallList.get(i).move();
-			} else if ( rightWallList.get(i).isVisible() ) {
-				rightWallList.get(i).move();
+		if ( !rightWallList.get(0).isVisible() ) {
+			rightWallList.remove(0);
+			if ( random.nextBoolean() ) {
+				rightWallList.add(new Wall("wall3"));
 			} else {
-				rightWallList.remove(i);
-				if ( Score.getScore()%3 == 0 && sleepTime >= PlayConfig.minSleepTime ) {
-					sleepTime--;
-				}
-				Score.addScore();
-				if ( random.nextBoolean() ) {
-					rightWallList.add(new Wall("wall3"));
-				} else {
-					rightWallList.add(new Wall("wall4"));
-				}
+				rightWallList.add(new Wall("wall4"));
 			}
+			if ( Score.getScore()%3 == 0 && sleepTime >= PlayConfig.minSleepTime ) {
+				sleepTime--;
+			}
+			Score.addScore();
+		}
+		for ( int i = 0; i < rightWallList.size(); i++ ) {
+			rightWallList.move();
 		}
 	}
 
