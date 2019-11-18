@@ -83,35 +83,26 @@ public class Result extends JPanel implements ActionListener {
 		case "Title":
 			try {
 				Ranking.updateRanking(userName, score);
-				screen.changeJPanel(new Title(screen));
-				break;
-			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Title(screen));
-			}
+			} catch ( Exception e1 ) { }
+			screen.changeJPanel(new Title(screen));
+			break;
 		case "Retry":
 			try {
 				Ranking.updateRanking(userName, score);
-				screen.changeJPanel(new Play(screen));
-				break;
-			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Play(screen));
-			}
+			} catch ( Exception e1 ) { }
+			screen.changeJPanel(new Play(screen));
+			break;
 		case "Ranking":
 			try {
 				Ranking.updateRanking(userName, score);
-				screen.changeJPanel(new Record(screen));
-				break;
-			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Record(screen));
-			}
+			} catch ( Exception e1 ) { }
+			screen.changeJPanel(new Record(screen));
+			break;
 		case "Exit":
 			try {
 				Ranking.updateRanking(userName, score);
-				System.exit(0);
-				break;
-			} catch ( Exception e1 ) {
-				System.exit(0);
-			}
+			} catch ( Exception e1 ) { }
+			System.exit(0);
 		}
 
 	}
