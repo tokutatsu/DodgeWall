@@ -116,7 +116,9 @@ public class Wall extends Unit {
 	// 描画メソッド
 	@Override
 	public void draw(Graphics g) {
-		color = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+		if (alpha <= WallConfig.maxAlpha) {
+			color = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+		}
 		alpha += WallConfig.alphaIncrease;
 		g.setColor(color);
 		g.fillPolygon(wall);

@@ -88,8 +88,10 @@ public class WallConfig {
 	public static int frame = (WindowConfig.Height-yWall[0])/yUpperIncrease;
 	// 壁の色の透明度の初期値
 	public static final int alpha = 0;
+	// 壁の色の透明度の最大値
+	public static final int maxAlpha = 255;
 	// 壁の色の透明度の増加量
-	public static final int alphaIncrease = 255/frame;
+	public static final int alphaIncrease = maxAlpha/frame*2;
 	// 壁の色
 	public static final Color color = new Color(255, 0, 255, alpha);
 
