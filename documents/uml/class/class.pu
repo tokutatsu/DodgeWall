@@ -164,7 +164,7 @@ package config {
     }
 
     class BallConfig {
-        + int size = WindowConfig.Width/5;
+        + size: int
 
         + color: Color
 
@@ -249,7 +249,7 @@ package scene {
         + Title(screen: Screen)
 
         + actionPerfomed(e: ActionEvent): void
-        + paintComponent(g, Graphics): void
+        + paintComponent(g: Graphics): void
     }
 
     class Play {
@@ -277,7 +277,7 @@ package scene {
         - startThread(): void
         - stopThread(): void
 
-        + paintComponent(g, Graphics): void
+        + paintComponent(g: Graphics): void
         + run(): void
     }
 
@@ -296,7 +296,7 @@ package scene {
         + Result(score: int, screen: Screen)
 
         + actionPerfomed(e: ActionEvent): void
-        + paintComponent(g, Graphics): void
+        + paintComponent(g: Graphics): void
     }
     
     class Record {
@@ -307,7 +307,7 @@ package scene {
         + Record(screen: Screen)
 
         + actionPerfomed(e: ActionEvent): void
-        + paintComponent(g, Graphics): void
+        + paintComponent(g: Graphics): void
     }
 }
 
