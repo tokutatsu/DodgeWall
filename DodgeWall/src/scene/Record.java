@@ -49,20 +49,26 @@ public class Record extends JPanel implements ActionListener {
 
 	@Override
 	public void paintComponent(Graphics g) {
+
 		super.paintComponent(g);
 		String head = new String("RANKING");
 		ArrayList<HashMap<String, String>> recordList = new ArrayList<HashMap<String, String>>();
-		try {
-			recordList = Ranking.getTopTenRanking();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		// headの表示
 		g.setColor(WindowConfig.headColor);
 		g.setFont(WindowConfig.headFont);
 		FontMetrics headFontMetrics = g.getFontMetrics();
 		g.drawString(head, (WindowConfig.Width-headFontMetrics.stringWidth(head)-headFontMetrics.charWidth('l'))/2, WindowConfig.headY);
+
+		try {
+			recordList = Ranking.getTopTenRanking();
+		} catch (Exception e) {
+			String errorMessage = "no data";
+			g.setColor(RecordConfig.errorColor);
+			g.setFont(RecordConfig.errorFont);
+			g.drawString(errorMessage, (WindowConfig.Width-g.getFontMetrics().stringWidth(errorMessage)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.errorY);
+			return;
+		}
 
 		// ランキングの表示
 		g.setColor(RecordConfig.recordColor);

@@ -15,4 +15,9 @@ public class RecordConfig {
 	public static final int rankX = 50;
 	public static final int userNameX = 70;
 	public static final int scoreX = 350;
+
+	// エラーが出たとき
+	public static final Color errorColor = new Color(0, 0, 0) ;
+	public static final Font errorFont = new Font("メイリオ", Font.BOLD, 30);
+	public static final int errorY = 350;
 }
