@@ -208,7 +208,7 @@ public class Play extends JPanel implements Runnable {
 			}
 		}
 		for ( int i = 0; i < leftWallList.size(); i++ ) {
-			leftWallList.move();
+			leftWallList.get(i).move();
 		}
 		// 右の壁
 		if ( rightWallList.size() < WallConfig.pieces && rightWallList.get(rightWallList.size()-1).nextTrigger() ) {
@@ -231,7 +231,7 @@ public class Play extends JPanel implements Runnable {
 			Score.addScore();
 		}
 		for ( int i = 0; i < rightWallList.size(); i++ ) {
-			rightWallList.move();
+			rightWallList.get(i).move();
 		}
 	}
 
