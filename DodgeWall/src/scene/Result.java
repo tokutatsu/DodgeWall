@@ -86,7 +86,7 @@ public class Result extends JPanel implements ActionListener {
 				screen.changeJPanel(new Title(screen));
 				break;
 			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Result(score, screen));
+				screen.changeJPanel(new Title(screen));
 			}
 		case "Retry":
 			try {
@@ -94,7 +94,7 @@ public class Result extends JPanel implements ActionListener {
 				screen.changeJPanel(new Play(screen));
 				break;
 			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Result(score, screen));
+				screen.changeJPanel(new Play(screen));
 			}
 		case "Ranking":
 			try {
@@ -102,7 +102,7 @@ public class Result extends JPanel implements ActionListener {
 				screen.changeJPanel(new Record(screen));
 				break;
 			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Result(score, screen));
+				screen.changeJPanel(new Record(screen));
 			}
 		case "Exit":
 			try {
@@ -110,7 +110,7 @@ public class Result extends JPanel implements ActionListener {
 				System.exit(0);
 				break;
 			} catch ( Exception e1 ) {
-				screen.changeJPanel(new Result(score, screen));
+				System.exit(0);
 			}
 		}
 
