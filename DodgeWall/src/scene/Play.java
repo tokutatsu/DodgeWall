@@ -165,7 +165,7 @@ public class Play extends JPanel implements Runnable {
 			rightBackgroundList.get(i).move();
 		}
 		// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
-		if ( leftBackgroundList.size() < BackgroundConfig.pieces && leftBackgroundList.get(leftBackgroundList.size()-1).nextTrigger() ) {
+		if ( leftBackgroundList.size() < BackgroundConfig.pieces && leftBackgroundList.get(leftBackgroundList.size()-1).shouldCreateBackground() ) {
 			leftBackgroundList.add(new Background("leftBackground"));
 		}
 		// 背景が画面内になければその背景をArrayListから削除する．
@@ -173,7 +173,7 @@ public class Play extends JPanel implements Runnable {
 			leftBackgroundList.remove(0);
 			leftBackgroundList.add(new Background("leftBackground"));
 		}
-		if ( rightBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).nextTrigger() ) {
+		if ( rightBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).shouldCreateBackground() ) {
 			rightBackgroundList.add(new Background("rightBackground"));
 		}
 		if ( !rightBackgroundList.get(0).isVisible() ) {
@@ -187,7 +187,7 @@ public class Play extends JPanel implements Runnable {
 		for ( int i = 0; i < rightWallList.size(); i++ ) {
 			rightWallList.get(i).move();
 		}
-		if ( leftWallList.size() < WallConfig.pieces && leftWallList.get(leftWallList.size()-1).nextTrigger() ) {
+		if ( leftWallList.size() < WallConfig.pieces && leftWallList.get(leftWallList.size()-1).shouldCreateWall() ) {
 			if ( random.nextBoolean() ) {
 				leftWallList.add(new Wall("wall2"));
 			} else {
@@ -202,7 +202,7 @@ public class Play extends JPanel implements Runnable {
 				leftWallList.add(new Wall("wall1"));
 			}
 		}
-		if ( rightWallList.size() < WallConfig.pieces && rightWallList.get(rightWallList.size()-1).nextTrigger() ) {
+		if ( rightWallList.size() < WallConfig.pieces && rightWallList.get(rightWallList.size()-1).shouldCreateWall() ) {
 			if ( random.nextBoolean() ) {
 				rightWallList.add(new Wall("wall3"));
 			} else {
