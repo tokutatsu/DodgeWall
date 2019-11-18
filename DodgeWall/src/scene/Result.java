@@ -1,5 +1,6 @@
 package scene;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ import process.Ranking;
 public class Result extends JPanel implements ActionListener {
 
 	private int score;
-	private int scoreMessageLength;
+	private FontMetrics fontMetrics;
 	private String userName;
 	private String scoreMessage;
 	private JTextField inputUserName;
@@ -71,8 +72,8 @@ public class Result extends JPanel implements ActionListener {
 		// scoreMessageの描画
 		g.setColor(ResultConfig.fontColor);
 		g.setFont(ResultConfig.scoreFont);
-		scoreMessageLength = g.getFontMetrics().stringWidth(scoreMessage);
-		g.drawString(scoreMessage, WindowConfig.Width/2-scoreMessageLength/2, ResultConfig.scoreY);
+		fontMetrics = g.getFontMetrics();
+		g.drawString(scoreMessage, (WindowConfig.Width-fontMetrics.stringWidth(scoreMessage)-fontMetrics.charWidth('l'))/2, ResultConfig.scoreY);
 
 	}
 

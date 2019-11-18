@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -57,12 +56,6 @@ public class Play extends JPanel implements Runnable {
 	public Play(Screen screen) {
 		this.screen = screen;
 		sleepTime = PlayConfig.maxSleepTime;
-		JButton startBtn = new JButton("start");
-		startBtn.addActionListener(e -> startThread());
-		JButton stopBtn = new JButton("stop");
-		stopBtn.addActionListener(e -> stopThread());
-		add(startBtn);
-		add(stopBtn);
 		addKeyListener(leftBall);
 		addKeyListener(rightBall);
 		init();
