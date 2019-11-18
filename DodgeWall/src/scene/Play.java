@@ -183,13 +183,13 @@ public class Play extends JPanel implements Runnable {
 			rightBackgroundList.get(i).move();
 		}
 		// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
-		if ( righttBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).nextTrigger() ) {
+		if ( rightBackgroundList.size() < BackgroundConfig.pieces && rightBackgroundList.get(rightBackgroundList.size()-1).nextTrigger() ) {
 			rightBackgroundList.add(new Background("rightBackground"));
 		}
 		// 背景が画面内になければその背景をArrayListから削除する．
 		if ( !rightBackgroundList.get(0).isVisible() ) {
 			rightBackgroundList.remove(0);
-			rightBackgroundList.add(new Background("righttBackground"));
+			rightBackgroundList.add(new Background("rightBackground"));
 		}
 		// 左の壁
 		if ( leftWallList.size() < WallConfig.pieces && leftWallList.get(leftWallList.size()-1).nextTrigger() ) {
