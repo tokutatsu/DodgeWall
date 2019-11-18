@@ -56,6 +56,8 @@ public class BackgroundConfig {
 	// 背景の色
 	// 背景色の透明度の初期値
 	public static final int alpha = 0;
+	// 背景の色の透明度の最大値
+	public static final int maxAlpha = 255;
 	// 背景の色の透明度の増加量
 	public static final int alphaIncrease = 255/frame;
 	// 背景の色(透明度以外)
