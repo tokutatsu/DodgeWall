@@ -1,6 +1,10 @@
 @startuml class
 title dodgeWall
 
+class Main {
+    + main(): void
+}
+
 package unit {
     abstract Unit {
         abstract draw(): void
@@ -47,7 +51,7 @@ package unit {
 
         + move(): void
         + isVisible(): boolean
-        + 
+        + shouldCreateWall(): boolean
         + getButtomLeft(): int
         + getPosition(): int
 
@@ -65,7 +69,7 @@ package unit {
 
         + move(): void
         + isVisible(): boolean
-        +
+        + shouldCreateBackground(): boolean
 
         + draw(g: Graphics): void
     }
@@ -73,6 +77,7 @@ package unit {
 
 package config {
     class BackgroundConfig {
+
     }
     
     class BallConfig {
@@ -87,6 +92,18 @@ package config {
 
     }
 
+    class PlayConfig {
+
+    }
+
+    class RecordConfig {
+
+    }
+
+    class ResultConfig {
+
+    }
+
     class WindowConfig {
         height
         width
@@ -94,37 +111,117 @@ package config {
 }
 
 package scene {
-    class Play {
+    class Screen {
+        + Screen()
 
+        + changeJPanel(panel: JPanel)
+    }
+
+    class Title {
+        - startButton: JButton
+        - rankingButton: JButton
+        - exitButton: JButton
+        - screen: Screen
+        
+        + Title(screen: Screen)
+
+        + actionPerfomed(e: ActionEvent): void
+        + paintComponent(g, Graphics): void
+    }
+
+    class Play {
+        - random: Random
+        - thread: Thread
+        - sleepTime: int
+        - leftBackgroundList: ArrayList<Background>
+        - rightBackgroundList: ArrayList<Background>
+        - back: Lane
+        - lane1: Lane
+        - lane2: Lane
+        - lane3: Lane
+        - lane4: Lane
+        - leftWallList: ArrayList<Wall>
+        - rightWallList: ArrayList<Wall>
+        - leftBall: Ball
+        - rightBall: Ball
+        - screen: Screen
+        - gameOverFlag: boolean
+
+        + Play(screen: Screen)
+
+        - init(): void
+        - move(): void
+        - startThread(): void
+        - stopThread(): void
+
+        + paintComponent(g, Graphics): void
+        + run(): void
     }
 
     class Result {
+        - score: int
+        - fontMetrics: FontMetorics
+        - userName: String
+        - scoreMessage: String
+        - inputUserName: JTextField
+        - titleButton: JButton
+        - retryButton: JButton
+        - rankingButton: JButton
+        - exitButton: JButton
+        - screen: Screen
 
+        + Result(score: int, screen: Screen)
+
+        + actionPerfomed(e: ActionEvent): void
+        + paintComponent(g, Graphics): void
     }
     
-    class Title {
-        
+    class Record {
+        - titleButton: JButton
+        - exitButton: JButton
+        - screen: Screen
+
+        + Record(screen: Screen)
+
+        + actionPerfomed(e: ActionEvent): void
+        + paintComponent(g, Graphics): void
     }
 }
 
 package process {
     class Judge {
-        hitJudge(ballPoint, ballSize, wallPoint, wallSpeed)
+        + hitJudge(leftBall: Ball, leftWallList: ArrayList<Wall>, rightBall: Ball, rightWallList: ArrayList<Wall>): boolean
+        - checkAllWall(ball: Ball, wallList: ArrayList<Wall>): boolean
+        - checkEachWall(ball: Ball, wall: Wall): boolean
     }
 
     class Score {
-        setMyHighScore(score)
-        getMyHighScore()
-    }
-}
+        - score: int
 
-class Main {
-    + main(): void
+        + init(): void
+        + addScore(): void
+        + getScore(): int
+    }
+
+    class Ranking {
+        + getTopTenRanking(): ArrayList<HashMap<String, String>>
+        + updateRanking(userName: String, score: int): void
+    }
 }
 
 Ball --|> Unit
 Wall --|> Unit
 Lane --|> Unit
 Background --|> Unit
+
+Play -- Ball
+Play -- Wall
+Play -- Lane
+Play -- Background
+
+Screen -- Title
+Screen -- Play
+Screen -- Result
+Screen -- Record
 
 @enduml
