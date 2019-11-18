@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import config.BackgroundConfig;
@@ -46,16 +45,16 @@ public class Play extends JPanel implements Runnable {
 	// leftBall -> 左，rightBall -> 右
 	private Ball leftBall = new Ball("leftBall");
 	private Ball rightBall = new Ball("rightBall");
-	// 一時変数
-	private Screen screen;
 
-	// ゲームオーバーのラベル
-	private JLabel gameOverLabel = new JLabel("GAME OVER");
+	private Screen screen;
+	// ゲームオーバーになるとtrueになる．
+	private boolean gameOverFlag;
 
 	//コンストラクタ
 	public Play(Screen screen) {
 		this.screen = screen;
 		sleepTime = PlayConfig.maxSleepTime;
+		gameOverFlag = false;
 		addKeyListener(leftBall);
 		addKeyListener(rightBall);
 		init();
@@ -107,6 +106,13 @@ public class Play extends JPanel implements Runnable {
 		for ( ; i >= 0; i-- ) {
 			rightWallList.get(i).draw(g);
 		}
+		if ( gameOverFlag ) {
+			String head = "GAME OVER";
+			g.setColor(WindowConfig.headColor);
+			g.setFont(WindowConfig.headFont);
+			g.drawString(head, (WindowConfig.Width-g.getFontMetrics().stringWidth(head)-g.getFontMetrics().charWidth('l'))/2, WindowConfig.headY);
+		}
+
 
 		// キー操作を有効にするために必要
 		requestFocusInWindow();
@@ -120,10 +126,7 @@ public class Play extends JPanel implements Runnable {
 			// オブジェクトたちを動かす
 			move();
 			if ( Judge.hitJudge(leftBall, leftWallList, rightBall, rightWallList) ) { // 衝突判定を行う
-				gameOverLabel.setFont(PlayConfig.font);
-				int width = gameOverLabel.getFontMetrics(PlayConfig.font).stringWidth("GAME OVER");
-				gameOverLabel.setBounds((WindowConfig.Width-width)/2, PlayConfig.positionY, width, PlayConfig.height);
-				add(gameOverLabel);
+				gameOverFlag = true;
 				repaint();
 				try {
 					Thread.sleep(PlayConfig.displayTime);
