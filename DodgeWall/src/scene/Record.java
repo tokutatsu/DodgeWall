@@ -64,7 +64,7 @@ public class Record extends JPanel implements ActionListener {
 			recordList = Ranking.getTopTenRanking();
 		} catch (Exception e) {
 //			String errorMessage1 = "データベースに接続できませんでした。";
-			String errorMessage1 = "Could not connect tothe datebase.";
+			String errorMessage1 = "Could not connect to the datebase.";
 //			String errorMessage2 = "データベースの設定を確認してください。";
 			String errorMessage2 = "Please check the database settings.";
 			g.setColor(RecordConfig.errorColor);
