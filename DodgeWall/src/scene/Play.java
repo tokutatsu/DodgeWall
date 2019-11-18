@@ -48,7 +48,6 @@ public class Play extends JPanel implements Runnable {
 	private Ball leftBall = new Ball("leftBall");
 	private Ball rightBall = new Ball("rightBall");
 	// 一時変数
-	private int i;
 	private Screen screen;
 
 	// ゲームオーバーのラベル
@@ -87,9 +86,14 @@ public class Play extends JPanel implements Runnable {
 	// 画面描写
 	@Override
 	public void paintComponent(Graphics g) {
+		int i;
 		super.paintComponent(g);
-		leftBackgroundList.forEach(b -> {b.draw(g);});
-		rightBackgroundList.forEach(b -> {b.draw(g);});
+		for ( i = 0; i < leftBackgroundList.size(); i++ ) {
+			leftBackgroundList.get(i).draw(g);
+		}
+		for ( i = 0; i < rightBackgroundList.size(); i++ ) {
+			rightBackgroundList.get(i).draw(g);
+		}
 		back.draw(g);
 		lane1.draw(g);
 		lane2.draw(g);
@@ -159,6 +163,7 @@ public class Play extends JPanel implements Runnable {
 
 	// 各オブジェクトをmoveメソッドで動かす
 	private void move() {
+		int i;
 		for ( i = 0; i < leftBackgroundList.size(); i++ ) {
 			// 背景の数が背景の数の最大値(3)よりも少なくて，背景が画面から消える1/3まで進んだら次の壁をArrayListに追加する
 			if ( leftBackgroundList.get(i).nextTrigger() && leftBackgroundList.size() < BackgroundConfig.pieces ) {
