@@ -27,7 +27,7 @@ public class Result extends JPanel implements ActionListener {
 
 	public Result(int score, Screen screen) {
 		setLayout(null);
-		this.userName = "Guest Name";
+		this.userName = "Guest";
 		this.score = score;
 		this.screen = screen;
 
