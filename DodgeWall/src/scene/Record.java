@@ -49,20 +49,30 @@ public class Record extends JPanel implements ActionListener {
 
 	@Override
 	public void paintComponent(Graphics g) {
+
 		super.paintComponent(g);
 		String head = new String("RANKING");
 		ArrayList<HashMap<String, String>> recordList = new ArrayList<HashMap<String, String>>();
-		try {
-			recordList = Ranking.getTopTenRanking();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		// headの表示
 		g.setColor(WindowConfig.headColor);
 		g.setFont(WindowConfig.headFont);
 		FontMetrics headFontMetrics = g.getFontMetrics();
 		g.drawString(head, (WindowConfig.Width-headFontMetrics.stringWidth(head)-headFontMetrics.charWidth('l'))/2, WindowConfig.headY);
+
+		try {
+			recordList = Ranking.getTopTenRanking();
+		} catch (Exception e) {
+//			String errorMessage1 = "データベースに接続できませんでした。";
+			String errorMessage1 = "Could not connect to the datebase.";
+//			String errorMessage2 = "データベースの設定を確認してください。";
+			String errorMessage2 = "Please check the database settings.";
+			g.setColor(RecordConfig.errorColor);
+			g.setFont(RecordConfig.errorFont);
+			g.drawString(errorMessage1, (WindowConfig.Width-g.getFontMetrics().stringWidth(errorMessage1)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.errorY);
+			g.drawString(errorMessage2, (WindowConfig.Width-g.getFontMetrics().stringWidth(errorMessage2)-g.getFontMetrics().charWidth('l'))/2, RecordConfig.errorY+RecordConfig.lineSpace);
+			return;
+		}
 
 		// ランキングの表示
 		g.setColor(RecordConfig.recordColor);
